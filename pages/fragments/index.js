@@ -6,10 +6,10 @@ const FragmentCollection = props => (
     <Layout>
         <h1>Fragment</h1>
         <ul>
-            {props.shows.map(fragment => (
+            {props.fragments.map(fragment => (
                 <li key={fragment.uuid}>
 
-                    <Link href="/fragments/[id]" as={`/fragments/${fragment.title}`}>
+                    <Link href="/fragments/[id]" as={`/fragments/${fragment.uuid}`}>
                         <a>{fragment.title}</a>
                     </Link>
 
@@ -28,7 +28,7 @@ FragmentCollection.getInitialProps = async function() {
     console.log(`Show data fetched. Count: ${data.length}`);
 
     return {
-      shows: data.map(entry => entry)
+      fragments: data.map(entry => entry)
     };
 };
 

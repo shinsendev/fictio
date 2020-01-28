@@ -1,15 +1,23 @@
-import { useRouter } from 'next/router';
 import Layout from '../../components/Layout';
+import fetch from 'isomorphic-unfetch';
 
-const Page = () => {
-    const router = useRouter();
+const Fragment = props => (
+    <Layout>
+        <h1>{props.fragment.title}</h1>
+        <p>{props.fragment.content}</p>
+        <style jsx>{`
+           h1 {
+            color:red;
+           }
+        `}</style>
+    </Layout>
+);
 
-    return (
-        <Layout>
-            <h1>{router.query.title}</h1>
-            <p>Contenu de fragment.</p>
-        </Layout>
-    );
+Fragment.getInitialProps = async function(context) {
+    const { id } = context.query;
+    const res = await fetch(`http://127.0.0.1:8000/api/fragments/${id}.json`);
+    const fragment = await res.json();
+    return { fragment };
 };
 
-export default Page;
+export default Fragment;
