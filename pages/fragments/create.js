@@ -1,7 +1,9 @@
-import React from 'react';
 import $ from "jquery";
+import React from 'react';
+import Layout from '../../components/Layout';
+import { uuid } from 'uuidv4';
 
-export class Writer extends React.Component {
+class CreateFragment extends React.Component {
 
     okAction() {
         alert('Top!');
@@ -21,25 +23,6 @@ export class Writer extends React.Component {
         console.log(window.innerHeight);
     }
 
-    saveAction() {
-        const data = {
-            "uuid": "57f107f2-a4cb-4b2d-862e-5c5fd8cf853e",
-            "code": "1",
-            "title": "Post test from Fictio",
-            "content": "My first content with Fictio"
-        };
-
-        const response = fetch('http://127.0.0.1:8000/api/fragments', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
-
-        console.log(response);
-
-        // alert('Save text');
-    }
-
     handleKeyDown(event) {
         if (event.keyCode == 13 && event.ctrlKey /*enter*/) {
             alert('Top!');
@@ -52,14 +35,43 @@ export class Writer extends React.Component {
         }
     }
 
+    saveAction() {
+
+        let title = (document.getElementById('writerTitle')).value;
+        let content = (document.getElementById('writerTextarea')).value;
+
+        const data = {
+            "uuid": uuid(),
+            "code": "1",
+            "title": title,
+            "content": content
+        };
+
+
+        const response = fetch('http://127.0.0.1:8000/api/fragments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+
+        alert(`Text has been saved with content "${content}"`);
+    }
+
+
     render() {
         return (
+            <Layout>
             <div className="App">
                 <form action="#">
+                    <input id='writerTitle' type="text" placeholder="Titre"/>
+                    <br/>
                     <textarea id= 'writerTextarea' className="WriterTextarea" defaultValue="Non mais c'est pas vrai?!"/>
                     <button onClick={this.saveAction} className='saver'>Enregistrer</button>
                 </form>
             </div>
+            </Layout>
         );
     }
 }
+
+export default CreateFragment;

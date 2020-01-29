@@ -12,7 +12,7 @@ const Header = () => (
         <Link href="/fragments">
             <a style={linkStyle}>Mes fragments</a>
         </Link>
-        <Link href="/fragments/create-fragments">
+        <Link href="/fragments/create">
             <a style={linkStyle}>Créer un fragment</a>
         </Link>
         <Link href="/about">
