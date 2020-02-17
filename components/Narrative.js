@@ -106,7 +106,6 @@ const NarrativeElement = props => {
     )
 };
 
-
 export default function Narrative(props) {
     return (
         <NarrativeElement item={props.item} />

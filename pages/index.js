@@ -12,24 +12,23 @@ const Index = () => (
 
         <Layout>
 
-            <div>
-                <TextList title={'Last Texts'}/>
-                <TextList title={'Origins Narratives'}/>
-                <TextList title={'Other Narratives'}/>
-            </div>
+            <div className="container">
+                <div className="main">
+                    <TextList title={'Last Texts'}/>
+                    <TextList title={'Origins Narratives'}/>
+                    <TextList title={'Other Narratives'}/>
+                </div>
 
-            <div>
-                <div>Fiction title</div>
-                <div>Logs</div>
-                <CharacterList title={'My fiction Characters'}/>
+                <aside>
+                    <div>Fiction title</div>
+                    <div>Logs</div>
+                    <CharacterList title={'My fiction Characters'}/>
+                </aside>
             </div>
             <style jsx>{`
-                body {
-                    font-family: 'Roboto', sans-serif;                    
-                }
-                
-                p {
-                    font-size: 12px;
+                .container {
+                    display:grid;
+                    grid-template-columns: 7fr 5fr;
                 }
             `}</style>
         </Layout>
