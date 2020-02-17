@@ -9,7 +9,7 @@ const FragmentCollection = props => (
             {props.fragments.map(fragment => (
                 <li key={fragment.uuid}>
 
-                    <Link href="/fragments/[id]" as={`/fragments/${fragment.uuid}`}>
+                    <Link href="/fictions/[id]" as={`/fragments/${fragment.uuid}`}>
                         <a>{fragment.title}</a>
                     </Link>
 
