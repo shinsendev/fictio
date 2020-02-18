@@ -29,22 +29,16 @@ const Index = () => (
                 </aside>
             </div>
             <style jsx>{`
-                .body {
-                  background: grey;
-                }
                 .container {
-                    max-width: 1400px;
-                    margin:auto;
-                    font-family: 'Roboto', sans-serif;
-                    font-size: 12px;
                     display:grid;
                     grid-template-columns: 7fr 5fr;
+                    border-right: 1px solid grey;
+                    border-bottom: 1px solid grey;
                 }
 
                 aside {
                     padding: 3px 12px;
                 }
-
             `}</style>
         </Layout>
     </div>

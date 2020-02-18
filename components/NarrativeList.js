@@ -33,12 +33,6 @@ export default function NarrativeList(props) {
             <Narrative item = {data[0]} />
             <Narrative item = {data[1]} />
             <Narrative item = {data[2]} />
-            <style jsx>{`
-                h2 {
-                    text-transform: uppercase;
-                    text-decoration: underline
-                }
-            `}</style>
         </div>
     </div>
     )

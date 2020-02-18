@@ -12,13 +12,12 @@ export default function ActionMenu () {
                 }
                 
                 button {
-                    //text-transform: uppercase; 
                     padding: 6px;
                     font-size:14px;
                     font-weight: bold;
                     min-height: 45px;
                     background: white;
-                    border: 1px solid black;
+                    border: 1px solid grey;
                     border-radius: 3px;
                     margin-right: 3px;
                     cursor: pointer;

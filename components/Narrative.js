@@ -26,18 +26,12 @@ const NarrativeElement = props => {
                 article {
                     border: 1px solid grey;
                     border-radius: 3px;
-                    font-family: 'Roboto', sans-serif;
                     font-size: 12px;                        
                     margin-bottom: 3px;
                     padding: 3px 6px 0px 6px;
                     position: relative;
                     display: grid;
                     grid-template-rows: 2fr 3fr 1fr;
-                }
-
-                .action {
-                    cursor: pointer;
-                    text-decoration: underline
                 }
 
                 .header {
@@ -81,19 +75,6 @@ const NarrativeElement = props => {
                 .created-at {
                     margin-left: 6px;
                     font-size:10px;                                    
-                }
-                
-                .delete:hover {
-                    color: red;
-                    cursor:pointer;
-                }
-
-                .delete {
-                    position: absolute;
-                    right: 1px;
-                    top: 1px;
-                    padding: 0px 3px;
-                    text-decoration: none;
                 }
 
                 .content {

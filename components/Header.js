@@ -5,13 +5,15 @@ const linkStyle = {
 };
 
 const containerStyle = {
-    display: "grid"
+    display: "flex",
+    border: "1px solid grey",
+    padding: "3px 6px"
 };
 
 const Header = () => (
-    <div id="navbar" style={containerStyle}>
+    <div className='container' style={containerStyle}>
 
-        <h2>Ficti</h2>
+        <div className='sitename'>Ficti</div>
 
         <Link href="/">
             <a style={linkStyle}>My Fiction</a>
@@ -27,6 +29,17 @@ const Header = () => (
             <a style={linkStyle}>Logout</a>
         </Link>
 
+        <style jsx>{`
+            .container {
+                flex-flow: row wrap;
+                justify-content: space-around;
+            }
+
+            .sitename {
+                font-size:18px;
+                font-weight: bold;
+            }
+        `}</style>
     </div>
 );
 
