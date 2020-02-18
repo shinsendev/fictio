@@ -25,13 +25,14 @@ const NarrativeElement = props => {
             <style jsx>{`
                 article {
                     border: 1px solid grey;
+                    border-radius: 3px;
                     font-family: 'Roboto', sans-serif;
                     font-size: 12px;                        
                     margin-bottom: 3px;
                     padding: 3px 6px 0px 6px;
                     position: relative;
                     display: grid;
-                    grid-template-rows: 2fr 4fr 1fr;
+                    grid-template-rows: 2fr 3fr 1fr;
                 }
 
                 .action {
@@ -44,7 +45,6 @@ const NarrativeElement = props => {
                     grid-row: 1 / 2;
                     display: grid;
                     grid-template-columns: 7fr 5fr;
-                    
                     // grid-gap: 10px;
                     // grid-auto-rows: minmax(45px, auto); 
                 }
@@ -56,6 +56,7 @@ const NarrativeElement = props => {
                 .more {
                     grid-row: 3 / 4;
                     text-align: center;
+                    margin-bottom: 3px;
                 }
 
                 .narrative-title {                            
@@ -99,7 +100,6 @@ const NarrativeElement = props => {
                     border: 1px solid black;
                     grid-row: 2/3;
                 }
-
             `}</style>
         </div>
 

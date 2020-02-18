@@ -1,6 +1,9 @@
 import Layout from '../components/Layout';
-import TextList from '../components/TextList';
+import NarrativeList from '../components/NarrativeList';
 import CharacterList from '../components/CharacterList';
+import Fiction from '../components/Fiction';
+import ActionMenu from '../components/ActionMenu';
+import Journal from '../components/Journal';
 import Head from "next/head";
 
 const Index = () => (
@@ -11,25 +14,37 @@ const Index = () => (
         </Head>
 
         <Layout>
-
             <div className="container">
                 <div className="main">
-                    <TextList title={'Last Texts'}/>
-                    <TextList title={'Origins Narratives'}/>
-                    <TextList title={'Other Narratives'}/>
+                    <NarrativeList title={'Last Texts'}/>
+                    <NarrativeList title={'Origins Narratives'}/>
+                    <NarrativeList title={'Other Narratives'}/>
                 </div>
 
                 <aside>
-                    <div>Fiction title</div>
-                    <div>Logs</div>
+                    <Fiction/>
+                    <ActionMenu/>
+                    <Journal/>
                     <CharacterList title={'My fiction Characters'}/>
                 </aside>
             </div>
             <style jsx>{`
+                .body {
+                  background: grey;
+                }
                 .container {
+                    max-width: 1400px;
+                    margin:auto;
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 12px;
                     display:grid;
                     grid-template-columns: 7fr 5fr;
                 }
+
+                aside {
+                    padding: 3px 12px;
+                }
+
             `}</style>
         </Layout>
     </div>
