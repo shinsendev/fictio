@@ -1,0 +1,39 @@
+body {
+  margin: 20;
+  padding: 20;
+  border: '1px solid #DDD';
+  max-width: 1200px;
+  margin: auto;
+  font-family: Roboto, 'sans-serif';
+  font-size: 12px;
+}
+
+h1 {
+  font-size:24px;
+  font-weight:bold;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.action {
+  cursor: pointer;
+  text-decoration: underline
+}
+
+.delete:hover {
+  color: black;
+  cursor:pointer;
+}
+
+.delete {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  padding: 0px 3px;
+  text-decoration: none;
+  color: grey;
+}
