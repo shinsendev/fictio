@@ -4,20 +4,42 @@ const linkStyle = {
     marginRight: 15
 };
 
+const containerStyle = {
+    display: "flex",
+    border: "1px solid grey",
+    padding: "3px 6px"
+};
+
 const Header = () => (
-    <div>
+    <div className='container' style={containerStyle}>
+
+        <div className='sitename'>Ficti</div>
+
         <Link href="/">
-            <a style={linkStyle}>Home</a>
+            <a style={linkStyle}>My Fiction</a>
         </Link>
-        <Link href="/fragments">
-            <a style={linkStyle}>Mes fragments</a>
+
+        <input type="search"/>
+
+        <Link href="/">
+            <a style={linkStyle}>My account</a>
         </Link>
-        <Link href="/fragments/create">
-            <a style={linkStyle}>Créer un fragment</a>
+
+        <Link href="/">
+            <a style={linkStyle}>Logout</a>
         </Link>
-        <Link href="/about">
-            <a style={linkStyle}>About</a>
-        </Link>
+
+        <style jsx>{`
+            .container {
+                flex-flow: row wrap;
+                justify-content: space-around;
+            }
+
+            .sitename {
+                font-size:18px;
+                font-weight: bold;
+            }
+        `}</style>
     </div>
 );
 

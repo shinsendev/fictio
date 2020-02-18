@@ -13,10 +13,14 @@ class CreateFragment extends React.Component {
         alert('Oh non');
     }
 
+    setTextAreaValue(value) {
+        return value;
+    }
+
     componentDidMount() {
         $(document.body).on('keydown', this.handleKeyDown);
-
         let input = document.getElementById('writerTextarea');
+
         input.style.height = window.innerHeight+'px';
         input.style.width = window.innerWidth+'px';
         console.log(input.offsetHeight);
@@ -42,7 +46,7 @@ class CreateFragment extends React.Component {
 
         const data = {
             "uuid": uuid(),
-            "code": "1",
+            "code": "2", //todo: generate code from API with uniqid()
             "title": title,
             "content": content
         };
@@ -53,6 +57,8 @@ class CreateFragment extends React.Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         });
+
+        // setTextAreaValue(content);
 
         alert(`Text has been saved with content "${content}"`);
     }
@@ -65,7 +71,7 @@ class CreateFragment extends React.Component {
                 <form action="#">
                     <input id='writerTitle' type="text" placeholder="Titre"/>
                     <br/>
-                    <textarea id= 'writerTextarea' className="WriterTextarea" defaultValue="Non mais c'est pas vrai?!"/>
+                    <textarea id= 'writerTextarea' className="WriterTextarea" defaultValue={this.setTextAreaValue('Valeur par défaut')}/>
                     <button onClick={this.saveAction} className='saver'>Enregistrer</button>
                 </form>
             </div>
