@@ -16,24 +16,6 @@ export default function Character(props) {
                   text-align: center;
                 }
 
-                .action {
-                    cursor: pointer;
-                    text-decoration: underline
-                }
-
-                .delete:hover {
-                    color: red;
-                    cursor:pointer;
-                }
-
-                .delete {
-                    position: absolute;
-                    right: 1px;
-                    top: 1px;
-                    padding: 0px 3px;
-                    text-decoration: none;
-                }
-
             `}</style>
         </article>
     );
