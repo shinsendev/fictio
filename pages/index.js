@@ -1,9 +1,4 @@
 import Layout from '../components/Layout';
-import NarrativeList from '../components/NarrativeList';
-import CharacterList from '../components/CharacterList';
-import FictionItem from '../components/FictionItem';
-import ActionMenu from '../components/ActionMenu';
-import Journal from '../components/Journal';
 import Head from "next/head";
 import Link from 'next/link';
 
@@ -22,7 +17,6 @@ const Index = (props) => {
                     <a>My Fiction</a>
                 </Link>
             </Layout>
-                
         </div>
     );
 }
