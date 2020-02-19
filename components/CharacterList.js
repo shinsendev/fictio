@@ -65,19 +65,16 @@ export default function Characterlist (props) {
     ];
 
     return (
+
         <div className="container">
             <h2>123 Characters</h2>
+
             <div className="character-list">
-                <Character item={data[0]}/>
-                <Character item={data[1]}/>
-                <Character item={data[2]}/>
-                <Character item={data[3]}/>
-                <Character item={data[4]}/>
-                <Character item={data[5]}/>
-                <Character item={data[6]}/>
-                <Character item={data[7]}/>
-                <Character item={data[8]}/>
+                {props.data.slice(0,9).map(character => (
+                    <Character key = {character.uuid} item = {character} />
+                ))}
             </div>
+
             <style jsx>{`
                 .container {
                   padding: 3px 6px;

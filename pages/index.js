@@ -1,47 +1,31 @@
 import Layout from '../components/Layout';
-import NarrativeList from '../components/NarrativeList';
-import CharacterList from '../components/CharacterList';
-import Fiction from '../components/Fiction';
-import ActionMenu from '../components/ActionMenu';
-import Journal from '../components/Journal';
 import Head from "next/head";
+import Link from 'next/link';
 
-const Index = () => (
-    <div>
-        <Head>
-            <title>Ficti : create your fiction</title>
-            <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-        </Head>
+const Index = (props) => {
+    const fictionUuid = '1b7df281-ae2a-40bf-ad6a-ac60409a9ce6';
 
-        <Layout>
-            <div className="container">
-                <div className="main">
-                    <NarrativeList title={'Last Texts'}/>
-                    <NarrativeList title={'Origins Narratives'}/>
-                    <NarrativeList title={'Other Narratives'}/>
-                </div>
+    return (
+        <div>
+            <Head>
+                <title>Ficti : create your fiction</title>
+                <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+            </Head>
+    
+            <Layout>
+                <Link href="/fictions/1b7df281-ae2a-40bf-ad6a-ac60409a9ce6">
+                    <a>My Fiction</a>
+                </Link>
+            </Layout>
+        </div>
+    );
+}
 
-                <aside>
-                    <Fiction/>
-                    <ActionMenu/>
-                    <Journal/>
-                    <CharacterList title={'My fiction Characters'}/>
-                </aside>
-            </div>
-            <style jsx>{`
-                .container {
-                    display:grid;
-                    grid-template-columns: 7fr 5fr;
-                    border-right: 1px solid grey;
-                    border-bottom: 1px solid grey;
-                }
-
-                aside {
-                    padding: 3px 12px;
-                }
-            `}</style>
-        </Layout>
-    </div>
-);
+Index.getInitialProps = async function(context) {
+    const id = '1b7df281-ae2a-40bf-ad6a-ac60409a9ce6';
+    const res = await fetch('http://127.0.0.1:8000/api/fictions/'+id+'.json');
+    const payload = await res.json();
+    return { payload };
+};
 
 export default Index;
