@@ -21,11 +21,4 @@ const Index = (props) => {
     );
 }
 
-Index.getInitialProps = async function(context) {
-    const id = '1b7df281-ae2a-40bf-ad6a-ac60409a9ce6';
-    const res = await fetch('http://127.0.0.1:8000/api/fictions/'+id+'.json');
-    const payload = await res.json();
-    return { payload };
-};
-
 export default Index;

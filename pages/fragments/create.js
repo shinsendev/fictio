@@ -51,8 +51,7 @@ class CreateFragment extends React.Component {
             "content": content
         };
 
-
-        const response = fetch('http://127.0.0.1:8000/api/fragments', {
+        const response = fetch(process.env.edoAPIUrl + 'fragments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
