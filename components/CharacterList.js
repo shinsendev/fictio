@@ -1,71 +1,7 @@
 import Character from "./Character";
 
 export default function Characterlist (props) {
-    const data = [
-        {
-            "firstname" : "Okita",
-            "lastname" : "Soji",
-            "birthday" : 1900,
-            "deathday" : 2000
-        },
-        {
-            "firstname" : "Atalaire",
-            "lastname" : "Soji",
-            "birthday" : 1900,
-            "deathday" : 2000
-        },
-        {
-            "firstname" : "Okita",
-            "lastname" : "Lomma",
-            "birthday" : 1900,
-            "deathday" : 2000
-        },
-        {
-            "firstname" : "Okita",
-            "lastname" : "Soji",
-            "birthday" : 1900,
-            "deathday" : 2000
-        },
-        {
-            "firstname" : "Okita",
-            "lastname" : "Soji",
-            "birthday" : 1900,
-            "deathday" : 2000
-        },
-        {
-            "firstname" : "Okita",
-            "lastname" : "Soji",
-            "birthday" : 1900,
-            "deathday" : 2000
-        },
-        {
-            "firstname" : "Okita",
-            "lastname" : "Soji",
-            "birthday" : 1900,
-            "deathday" : 2000
-        },
-        {
-            "firstname" : "Okita",
-            "lastname" : "Soji",
-            "birthday" : 1900,
-            "deathday" : 2000
-        },
-        {
-            "firstname" : "Okita",
-            "lastname" : "Soji",
-            "birthday" : 1900,
-            "lasthday" : 2000
-        },
-        {
-            "firstname" : "Okita",
-            "lastname" : "Soji",
-            "birthday" : 1900,
-            "deathday" : 2000
-        }
-    ];
-
     return (
-
         <div className="container">
             <h2>123 Characters</h2>
 

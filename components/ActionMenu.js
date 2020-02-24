@@ -1,8 +1,16 @@
+import Link from 'next/link';
+
 export default function ActionMenu () {
     return (
         <div className="container">
-            <button>New Narrative</button>
+
+            <button>
+                <Link href="/writing/narratives">
+                    <a>New Narrative</a>
+                </Link>
+            </button>
             <button>New Character</button>
+
             <style jsx>{`
                 .container {
                   display: grid;
