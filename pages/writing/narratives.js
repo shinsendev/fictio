@@ -50,12 +50,6 @@ const WritingNarrative = (props) => {
     return (
         <Layout>
             <div className="container">
-                <div>
-                    <p>Vous avez cliqué {count} fois</p>
-                    <button onClick={() => setCount(count + 1)}>
-                        Cliquez ici
-                    </button>
-                </div>
                 <aside>
                     <h2>Narratives</h2>
                     <div>
