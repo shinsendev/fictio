@@ -64,10 +64,10 @@ const WritingNarrative = (props) => {
                         <span>Tab 3</span>
                     </div>
 
-                    <div>
+                    <form>
                         <input type="text" id='narrativeTitle'/>
                         <textarea id='narrativeContent'></textarea>
-                    </div>
+                    </form>
                 </div>
 
                 <aside>
@@ -92,6 +92,17 @@ const WritingNarrative = (props) => {
 
                 h2 {
                     transform: rotate(-90deg);
+                }
+
+                #narrativeTitle {
+                    width: 100%;
+                    margin-bottom:6px;
+                    font-size:1.5em;
+                }
+
+                textarea {
+                    min-height: 600px;
+                    font-size:1.5em;
                 }
             `}</style>
         </Layout>
