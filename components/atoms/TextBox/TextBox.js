@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextBox = (props) => {
+const TextBox = props => {
     return (
         <article className='textBox'>
             {props.content}
