@@ -9,12 +9,19 @@ const IconRestore = props => {
 
     return (
         <article className='element' onClick={createRestoreModal}>
-            <Restore fontSize="large"/>
+            <Restore fontSize="small"/>
             
             <style jsx>{`
-                article {
-                    color:black;
-                }
+                    article {
+                        background: black;
+                        color:white;
+                        width:20px;
+                        height:20px;
+                        border:1px solid white;
+                        border-radius: 50%;
+                        text-align:center;
+                        padding:10px 10px 10px 10px;
+                    }
             `}</style>
         </article>
     );
