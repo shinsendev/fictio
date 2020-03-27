@@ -1,11 +1,12 @@
 import Header from '../organisms/Header';
 import Origin from '../organisms/Origin';
+import fetch from 'isomorphic-unfetch';
 
 const OriginTemplate = props => {
     return (
         <div>
             <Header />
-            <Origin uuid={props.uuid}/>
+            <Origin narratives = {props.narratives} />
         </div>
     );
 }
