@@ -15,6 +15,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.9.7",
+    "@material-ui/icons": "^4.9.1",
     "isomorphic-unfetch": "^3.0.0",
     "jquery": "^3.4.1",
     "next": "^9.3.1",
@@ -26,12 +28,19 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-info": "^5.3.17",
     "@storybook/addon-links": "^5.3.17",
     "@storybook/addons": "^5.3.17",
+    "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.17",
+    "@types/jest": "^25.1.4",
     "@types/node": "^13.9.4",
     "@types/react": "^16.9.25",
     "babel-loader": "^8.1.0",
+    "jest": "^25.2.2",
+    "react-docgen-typescript-loader": "^3.7.1",
+    "ts-jest": "^25.2.1",
+    "ts-loader": "^6.2.2",
     "typescript": "^3.8.3"
   }
 }
