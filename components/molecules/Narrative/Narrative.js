@@ -5,19 +5,46 @@ import IconDisplay from '../../atoms/IconDisplay/IconDisplay';
 
 const Narrative = props => {
     return (
-        <article>
-            
-            <div className = 'textBox' >
-                <TextBox content = {props.narrative.content} />
-                <CrossDelete/>
+        <article className='element'>
+
+            <aside class='menu'>
                 <NarrativeMenu />
-                <IconDisplay />
+            </aside>
+
+            <div className = 'content'>
+                
+                <div className="textBox">
+                    {/* <TextBox content = {props.narrative.content} /> */}
+                </div>
+                
+                <div className = 'delete'>
+                    <CrossDelete />
+                </div>
+                
+                <div className = 'display'>
+                    <IconDisplay />
+                </div>
             </div>
 
             <style jsx>{`
-                .textBox {
-                    margin-bottom: 5px;
+                .element {
+                    display: flex;
+                    align-items: center;
                 }
+                
+                .menu {
+                    
+                }
+
+                .delete {
+
+                }
+                
+                .content {
+                    width: 650px;
+                    margin-top: 5px;
+                }
+
             `}</style>
 
         </article>
