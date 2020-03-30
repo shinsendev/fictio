@@ -22,6 +22,12 @@ const IconSave = props => {
                     text-align:center;
                     padding:10px 10px 10px 10px;
                 }
+
+                article:hover {
+                    color: grey;
+                    cursor: pointer;
+                    border: grey 1px solid;
+                }
             `}</style>
         </article>
     );
