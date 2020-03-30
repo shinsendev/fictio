@@ -4,7 +4,7 @@ import { Add } from '@material-ui/icons';
 const IconAdd = props => {
 
     function saveContent() {
-        alert('hello');
+        alert('Save Content');
     }
 
     return (
