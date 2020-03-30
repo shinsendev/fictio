@@ -14,7 +14,7 @@ const Narrative = props => {
             <div className = 'content'>
                 
                 <div className="textBox">
-                    {/* <TextBox content = {props.narrative.content} /> */}
+                    <TextBox content = {props.narrative.content} />
                 </div>
                 
                 <div className = 'delete'>
@@ -32,17 +32,14 @@ const Narrative = props => {
                     align-items: center;
                 }
                 
-                .menu {
+                .display {
                     
                 }
 
-                .delete {
-
-                }
-                
                 .content {
                     width: 650px;
                     margin-top: 5px;
+                    position: relative;
                 }
 
             `}</style>
