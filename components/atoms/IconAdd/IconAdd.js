@@ -1,5 +1,5 @@
 import React from 'react';
-import { Restore } from '@material-ui/icons';
+import { Add } from '@material-ui/icons';
 
 const IconAdd = props => {
 
@@ -9,7 +9,7 @@ const IconAdd = props => {
 
     return (
         <article className='element' onClick={saveContent}>
-            <Restore fontSize="small"/>
+            <Add fontSize="small"/>
             
             <style jsx>{`
                 article {
