@@ -5,17 +5,9 @@ import IconSave from '../../atoms/IconSave/IconSave';
 const NarrativeMenu = props => {
     return (
         <article className='element'>
-            <div>
-                <IconAdd />
-            </div>
-
-            <div>
-                <IconRestore />
-            </div>
-
-            <div>
-                <IconSave />
-            </div>
+            <IconAdd />
+            <IconRestore />
+            <IconSave />
 
             <style jsx>{`
                 .element {
