@@ -6,7 +6,15 @@ const OriginTemplate = props => {
     return (
         <div>
             <Header />
-            <Origin narratives = {props.narratives} />
+            <div className="container">
+                <Origin narratives = {props.narratives} />
+            </div>
+            <style jsx>{`
+                .container {
+                    background: black;
+                    margin: auto;
+                }
+            `}</style>
         </div>
     );
 }

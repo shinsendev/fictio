@@ -21,7 +21,7 @@ const TextBox = props => {
 
     return (
             <article className='textBox'>
-                <TextareaAutosize defaultValue = {props.content} aria-label="empty textarea" placeholder="Empty" className={clsx(className)} />
+                <TextareaAutosize defaultValue = {props.content} aria-label="empty textarea" placeholder="You can write here" className={clsx(className)} />
             <style jsx>{`
                 article {
                     padding: 10px 20px;

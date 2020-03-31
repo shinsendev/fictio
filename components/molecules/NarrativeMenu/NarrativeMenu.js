@@ -17,6 +17,10 @@ const NarrativeMenu = props => {
                     padding: 5px 10px;
                     width: 120px;
                 }
+
+                .hidden {
+                    visibility: hidden;
+                }
             `}</style>
         </article>
     );
