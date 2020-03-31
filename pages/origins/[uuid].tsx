@@ -1,5 +1,5 @@
-import OriginTemplate from '../../components/templates/origin-template'
-import { useRouter } from 'next/router'; 
+import OriginTemplate from '../../components/templates/origin-template';
+import fetch from 'isomorphic-unfetch';
 
 const Origin = props => {
     return (
@@ -13,6 +13,5 @@ Origin.getInitialProps = async function (context) {
     const narratives = await res.json();
     return { narratives: narratives};
 }
-
 
 export default Origin;

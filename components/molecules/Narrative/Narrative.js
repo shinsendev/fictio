@@ -7,7 +7,7 @@ const Narrative = props => {
     return (
         <article className='element'>
 
-            <aside class='menu'>
+            <aside className='menu'>
                 <NarrativeMenu />
             </aside>
 
