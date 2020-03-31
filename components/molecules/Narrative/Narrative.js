@@ -31,6 +31,10 @@ const Narrative = props => {
                     display: flex;
                     align-items: center;
                 }
+
+                .textBox {
+                    margin-bottom: 9px;
+                }
                 
                 .display {
                     position: absolute;
