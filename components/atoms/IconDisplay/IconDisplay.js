@@ -6,7 +6,7 @@ const IconDisplay = props => {
             <ArrowDropDown />
             <style jsx>{`
                 .element {
-                    color: black;
+                    color: white;
                 }
             `}</style>
         </span>

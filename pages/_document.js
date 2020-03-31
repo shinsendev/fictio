@@ -51,6 +51,7 @@ MyDocument.getInitialProps = async ctx => {
   const sheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
+  // this function correct the CSS bug display with SSR
   ctx.renderPage = () =>
     originalRenderPage({
       enhanceApp: App => props => sheets.collect(<App {...props} />),

@@ -9,19 +9,19 @@ const TextBox = props => {
           color: 'white',
           background: '#262626',
           border: 'none',
-          width: '100%'
+          width: '100%',
+          maxHeight: '150px',
+          minHeight: '25px',
+          maxWidth: '620px' 
         },
       });
 
     const classes = useStyles();
     const className = clsx(classes.root);
-    console.log(className);
 
     return (
             <article className='textBox'>
-                <TextareaAutosize  value = {props.content} aria-label="empty textarea" placeholder="Empty" className={clsx(className)} >
-                    
-                </TextareaAutosize>
+                <TextareaAutosize defaultValue = {props.content} aria-label="empty textarea" placeholder="Empty" className={clsx(className)} />
             <style jsx>{`
                 article {
                     padding: 10px 20px;

@@ -33,7 +33,18 @@ const Narrative = props => {
                 }
                 
                 .display {
-                    
+                    position: absolute;
+                    bottom: 1px;
+                    width: 4%;
+                    left: 46%;
+                    color: white;
+                }
+
+                .delete {
+                    position: absolute;
+                    right: 6px;
+                    top: 3px;
+                    color: white;
                 }
 
                 .content {
