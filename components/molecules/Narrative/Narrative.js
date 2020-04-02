@@ -5,8 +5,6 @@ import IconDisplay from '../../atoms/IconDisplay/IconDisplay';
 import React, { useState } from 'react';
 
 const Narrative = props => {
-
-    const [isMenuVisible, setIsMenuVisible] = useState(props.isMenuVisible);
     const [isActive, setIsActive] = useState(false);
 
     function handleClick() {

@@ -5,7 +5,6 @@ const Origin = props => {
     const [activeUuid, setActiveUuid] = React.useState('');
 
     function handleClick(key) {
-        console.log('dans le handle click?');
         setActiveUuid(key);
     }
 
