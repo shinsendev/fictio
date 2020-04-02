@@ -12,7 +12,6 @@ const OriginTemplate = props => {
             <style jsx>{`
                 .container {
                     background: black;
-                    margin: auto;
                 }
             `}</style>
         </div>
