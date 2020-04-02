@@ -5,22 +5,25 @@ import IconDisplay from '../../atoms/IconDisplay/IconDisplay';
 import React, { useState } from 'react';
 
 const Narrative = props => {
+    const [isActive, setIsActive] = useState(false);
 
-    const [isMenuVisible, setIsMenuVisible] = useState(false);
+    function handleClick() {
+        props.onClick(props.narrative.uuid);
+    }
 
-    function toogleMenu() {
-        if (isMenuVisible) {
-            setIsMenuVisible(false);
+    function getClassNames() {
+        if (props.isActive == 'true') {
+            return "";
         }
         else {
-            setIsMenuVisible(true);
+            return "hidden";
         }
     }
     
     return (
-        <article className='element' onFocus = {toogleMenu} onBlur= {toogleMenu}>
+        <article className='element' onClick={handleClick}>
 
-            <aside className={`menu ${isMenuVisible ? "" : "hidden"}`}>
+            <aside className={getClassNames()}>
                 <NarrativeMenu />
             </aside>
 
