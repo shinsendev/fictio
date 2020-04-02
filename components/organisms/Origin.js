@@ -12,7 +12,6 @@ const Origin = props => {
                 .element {
                     max-width: 800px;
                     margin: auto;
-
                 }
             `}</style>
         </div>

@@ -2,12 +2,25 @@ import TextBox from '../../atoms/TextBox/TextBox';
 import NarrativeMenu from '../NarrativeMenu/NarrativeMenu';
 import CrossDelete from '../../atoms/CrossDelete/CrossDelete';
 import IconDisplay from '../../atoms/IconDisplay/IconDisplay';
+import React, { useState } from 'react';
 
 const Narrative = props => {
-    return (
-        <article className='element'>
 
-            <aside className='menu'>
+    const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+    function toogleMenu() {
+        if (isMenuVisible) {
+            setIsMenuVisible(false);
+        }
+        else {
+            setIsMenuVisible(true);
+        }
+    }
+    
+    return (
+        <article className='element' onFocus = {toogleMenu} onBlur= {toogleMenu}>
+
+            <aside className={`menu ${isMenuVisible ? "" : "hidden"}`}>
                 <NarrativeMenu />
             </aside>
 
@@ -55,6 +68,10 @@ const Narrative = props => {
                     width: 650px;
                     margin-top: 5px;
                     position: relative;
+                }
+
+                .hidden {
+                    visibility: hidden;
                 }
 
             `}</style>
