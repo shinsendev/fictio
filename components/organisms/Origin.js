@@ -18,10 +18,6 @@ const Origin = props => {
                     max-width: 800px;
                     margin: auto;
                 }
-
-                p {
-                    color: white;
-                }
             `}</style>
         </div>
     );
