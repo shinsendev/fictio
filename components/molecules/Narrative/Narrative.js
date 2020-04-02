@@ -6,21 +6,26 @@ import React, { useState } from 'react';
 
 const Narrative = props => {
 
-    const [isMenuVisible, setIsMenuVisible] = useState(false);
+    const [isMenuVisible, setIsMenuVisible] = useState(props.isMenuVisible);
+    const [isActive, setIsActive] = useState(false);
 
-    function toogleMenu() {
-        if (isMenuVisible) {
-            setIsMenuVisible(false);
+    function handleClick() {
+        props.onClick(props.narrative.uuid);
+    }
+
+    function getClassNames() {
+        if (props.isActive == 'true') {
+            return "";
         }
         else {
-            setIsMenuVisible(true);
+            return "hidden";
         }
     }
     
     return (
-        <article className='element' onFocus = {toogleMenu} onBlur= {toogleMenu}>
+        <article className='element' onClick={handleClick}>
 
-            <aside className={`menu ${isMenuVisible ? "" : "hidden"}`}>
+            <aside className={getClassNames()}>
                 <NarrativeMenu />
             </aside>
 
