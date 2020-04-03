@@ -5,18 +5,23 @@ import React, { useState } from 'react';
 const Origin = props => {
     const [activeUuid, setActiveUuid] = React.useState('');
 
+    function openModalOrigin() {
+        props.openModal();
+    }
+
     function handleClick(key) {
         setActiveUuid(key);
     }
 
     return (
         <div className="element">
-            <div>
-                <NarrativeVersionedMolecule narrative={props.narratives[0]} />
-            </div>
-
             {props.narratives.map(narrative => 
-                <Narrative isActive={`${(narrative.uuid == activeUuid) ? true : false}`} key={narrative.uuid} narrative={narrative} onClick={() => handleClick(narrative.uuid)}/>
+                <Narrative 
+                    isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
+                    key={narrative.uuid} 
+                    narrative={narrative} 
+                    onClick={() => handleClick(narrative.uuid)}
+                    openModal={openModalOrigin} />
             )}
             <style jsx>{`
                 .element {
