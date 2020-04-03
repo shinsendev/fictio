@@ -24,7 +24,7 @@ const Narrative = props => {
         <article className='element' onClick={handleClick}>
 
             <aside className={getClassNames()}>
-                <NarrativeMenu />
+                <NarrativeMenu narrative = {props.narrative} />
             </aside>
 
             <div className = 'content'>

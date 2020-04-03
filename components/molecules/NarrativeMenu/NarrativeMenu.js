@@ -7,7 +7,7 @@ const NarrativeMenu = props => {
         <article className='element'>
             <IconAdd />
             <IconRestore />
-            <IconSave />
+            <IconSave narrative = {props.narrative}/>
 
             <style jsx>{`
                 .element {

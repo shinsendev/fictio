@@ -4,7 +4,24 @@ import { Save } from '@material-ui/icons';
 const IconSave = props => {
 
     function saveContent() {
-        alert('hello');
+
+        const body = {
+            "uuid": props.narrative.uuid,
+            // replace with narrative content from form
+            "content": "Example of content save with Fictio",
+            "type": "narrative",
+            "fiction_uuid": "1b7df281-ae2a-40bf-ad6a-ac60409a9ce6"
+          };
+
+        //send POST request
+        const response = fetch('http://127.0.0.1:8000/api/narratives', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+          })
+
+        // todo: replace with a modal and an more appropriate message
+        alert(props.narrative.uuid);
     }
 
     return (
