@@ -10,8 +10,8 @@ const NarrativeMenu = props => {
     return (
         <article className='element'>
             <IconAdd />
-            <IconSave narrative = {props.narrative} openModal={openModal} />
-            <IconRestore />
+            <IconRestore openModal={openModal} />
+            <IconSave narrative = {props.narrative}/>
 
             <style jsx>{`
                 .element {
