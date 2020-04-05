@@ -3,11 +3,15 @@ import IconRestore from '../../atoms/IconRestore/IconRestore';
 import IconSave from '../../atoms/IconSave/IconSave';
 
 const NarrativeMenu = props => {
+    function openModal() {    
+       props.openModal();
+    }
+
     return (
         <article className='element'>
             <IconAdd />
+            <IconSave narrative = {props.narrative} openModal={openModal} />
             <IconRestore />
-            <IconSave narrative = {props.narrative}/>
 
             <style jsx>{`
                 .element {

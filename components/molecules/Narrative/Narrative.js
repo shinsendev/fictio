@@ -7,6 +7,10 @@ import React, { useState } from 'react';
 const Narrative = props => {
     const [isActive, setIsActive] = useState(false);
 
+    function openModalNarrative() {
+        props.openModal();
+    }
+
     function handleClick() {
         props.onClick(props.narrative.uuid);
     }
@@ -21,10 +25,10 @@ const Narrative = props => {
     }
     
     return (
-        <article className='element' onClick={handleClick}>
+        <article className='element' onClick={handleClick} >
 
             <aside className={getClassNames()}>
-                <NarrativeMenu narrative = {props.narrative} />
+                <NarrativeMenu openModal={openModalNarrative} narrative = {props.narrative}/>
             </aside>
 
             <div className = 'content'>
