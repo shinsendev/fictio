@@ -4,11 +4,11 @@ import { Add } from '@material-ui/icons';
 const IconAdd = props => {
 
     function saveContent() {
-        alert('Save Content');
+        alert('Create new narrative');
     }
 
     return (
-        <article className='element' onClick={saveContent}>
+        <article className='element' onClick={saveContent} >
             <Add fontSize="small"/>
             
             <style jsx>{`

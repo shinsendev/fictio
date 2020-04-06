@@ -3,12 +3,12 @@ import { Save } from '@material-ui/icons';
 
 const IconSave = props => {
 
-    function saveContent() {
-        alert('hello');
+    function save() {
+        props.saveNarrative();
     }
 
     return (
-        <article className='element' onClick={saveContent}>
+        <article className='element' onClick={save}>
             <Save fontSize="small"/>
             
             <style jsx>{`

@@ -1,14 +1,37 @@
 import TextBox from '../../atoms/TextBox/TextBox';
-import NarrativeMenu from '../NarrativeMenu/NarrativeMenu';
+import NarrativeMenu from '../NarrativeMenuMolecule/NarrativeMenuMolecule';
 import CrossDelete from '../../atoms/CrossDelete/CrossDelete';
 import IconDisplay from '../../atoms/IconDisplay/IconDisplay';
 import React, { useState } from 'react';
 
 const Narrative = props => {
-    const [isActive, setIsActive] = useState(false);
+    const [narrativeState, setNarrativeState] = useState(props.narrative);
 
     function openModalNarrative() {
         props.openModal();
+    }
+
+    function setContent(content) {
+        narrativeState.content = content;
+        setNarrativeState(narrativeState);  
+    }
+
+    function saveNarrative() {
+        const body = {
+            "uuid": narrativeState.uuid,
+            "content": narrativeState.content,
+            "type": "narrative",
+            "fiction_uuid": "1b7df281-ae2a-40bf-ad6a-ac60409a9ce6"
+        };
+
+        const response = fetch(process.env.edoAPIUrl+'narratives', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+          })
+
+        //todo: replace with a real modal
+        alert("Save ok");
     }
 
     function handleClick() {
@@ -28,13 +51,18 @@ const Narrative = props => {
         <article className='element' onClick={handleClick} >
 
             <aside className={getClassNames()}>
-                <NarrativeMenu openModal={openModalNarrative}/>
+                <NarrativeMenu
+                    openModal={openModalNarrative} 
+                    narrative={narrativeState} 
+                    saveNarrative={saveNarrative} 
+                    setContent={setContent}
+                />
             </aside>
 
             <div className = 'content'>
                 
                 <div className="textBox">
-                    <TextBox content = {props.narrative.content} />
+                    <TextBox content = {narrativeState.content} setContent={setContent} />
                 </div>
                 
                 <div className = 'delete'>

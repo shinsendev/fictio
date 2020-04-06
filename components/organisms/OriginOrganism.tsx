@@ -1,9 +1,10 @@
-import Narrative from '../molecules/Narrative/Narrative';
-import NarrativeVersionedMolecule from '../molecules/NarrativeVersionedMolecule/NarrativeVersionedMolecule';
-import React, { useState } from 'react';
+import NarrativeMolecule from '../molecules/NarrativeMolecule/NarrativeMolecule';
+import NarrativeList from '../model/NarrativesList';
+import React from 'react';
 
 const Origin = props => {
     const [activeUuid, setActiveUuid] = React.useState('');
+    const narrativeList = new NarrativeList(props.narratives);
 
     function openModalOrigin() {
         props.openModal();
@@ -16,7 +17,7 @@ const Origin = props => {
     return (
         <div className="element">
             {props.narratives.map(narrative => 
-                <Narrative 
+                <NarrativeMolecule 
                     isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
                     key={narrative.uuid} 
                     narrative={narrative} 
