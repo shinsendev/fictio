@@ -1,9 +1,9 @@
 import Header from '../organisms/Header';
-import Origin from '../organisms/Origin';
+import Origin from '../organisms/OriginOrganism';
 import Modal from '@material-ui/core/Modal';
-import fetch from 'isomorphic-unfetch';
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Narrative from '../molecules/NarrativeMolecule/NarrativeMolecule';
 
 const OriginTemplate = props => {
     const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +39,7 @@ const OriginTemplate = props => {
     }
 
     function openModalOriginsTemplate(){
+        // narrative = getNarrative;
         setIsOpen(true);
     }
     return (
@@ -52,7 +53,7 @@ const OriginTemplate = props => {
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description">
                     <div>
-                        {content}
+                        <div>{content}</div>
                     </div>
                 </Modal>
 

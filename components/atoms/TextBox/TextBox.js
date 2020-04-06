@@ -16,12 +16,22 @@ const TextBox = props => {
         },
       });
 
+    function handleChange(event) {
+        props.setContent(event.target.value);
+    }
+
     const classes = useStyles();
     const className = clsx(classes.root);
 
     return (
             <article className='textBox'>
-                <TextareaAutosize defaultValue = {props.content} aria-label="empty textarea" placeholder="You can write here" className={clsx(className)} />
+                <TextareaAutosize
+                    onChange={handleChange}
+                    defaultValue = {props.content}
+                    aria-label="empty textarea"
+                    placeholder="You can write here"
+                    className={clsx(className)}
+                />
             <style jsx>{`
                 article {
                     padding: 10px 20px;
