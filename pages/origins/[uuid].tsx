@@ -15,7 +15,7 @@ const Origin = props => {
 
 Origin.getInitialProps = async function (context) {
     const uuid = context.query.uuid;
-    const res = await fetch('http://127.0.0.1:8000/api/origins/'+uuid+'.json');
+    const res = await fetch(process.env.edoAPIUrl+'origins/'+uuid+'.json');
     const narrativesData = await res.json();
 
     // we set an object for Narrative List
