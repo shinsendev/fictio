@@ -3,12 +3,12 @@ import { Restore } from '@material-ui/icons';
 
 const IconRestore = props => {
 
-    function createRestoreModal() {
-        alert('hello');
+    function openModal() {  
+        props.openModal();
     }
 
     return (
-        <article className='element' onClick={createRestoreModal}>
+        <article className='element' onClick={openModal}>
             <Restore fontSize="small"/>
             
             <style jsx>{`
