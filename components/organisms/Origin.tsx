@@ -11,6 +11,16 @@ const Origin = props => {
 
     function handleClick(key) {
         setActiveUuid(key);
+        console.log('handleClick');
+        console.log(activeUuid);
+       
+        
+    }
+    
+    function sendActiveNarrativeUuidToParent() {
+        props.setActiveNarrativeUuid('toto');
+        console.log('sendActiveNarrativeUuidToParent');
+        console.log(activeUuid);
     }
 
     return (
@@ -21,6 +31,7 @@ const Origin = props => {
                     key={narrative.uuid} 
                     narrative={narrative} 
                     onClick={() => handleClick(narrative.uuid)}
+                    activeNarrativeUuid={sendActiveNarrativeUuidToParent}
                     openModal={openModalOrigin} />
             )}
             <style jsx>{`
