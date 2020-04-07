@@ -1,10 +1,11 @@
 import NarrativeMolecule from '../molecules/NarrativeMolecule/NarrativeMolecule';
 import NarrativeList from '../model/NarrativesList';
 import React from 'react';
+import {DragDropContext} from 'react-beautiful-dnd';
 
 const Origin = props => {
     const [activeUuid, setActiveUuid] = React.useState('');
-    const narrativeList = new NarrativeList(props.narratives);
+    const narrativeList = new NarrativeList(props.narratives);      
 
     function openModalOrigin() {
         props.openModal();
@@ -17,12 +18,12 @@ const Origin = props => {
     return (
         <div className="element">
             {props.narratives.map(narrative => 
-                <NarrativeMolecule 
-                    isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
-                    key={narrative.uuid} 
-                    narrative={narrative} 
-                    onClick={() => handleClick(narrative.uuid)}
-                    openModal={openModalOrigin} />
+                    <NarrativeMolecule 
+                        isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
+                        key={narrative.uuid} 
+                        narrative={narrative} 
+                        onClick={() => handleClick(narrative.uuid)}
+                        openModal={openModalOrigin} />
             )}
             <style jsx>{`
                 .element {

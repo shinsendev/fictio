@@ -3,6 +3,8 @@ import NarrativeMenu from '../NarrativeMenuMolecule/NarrativeMenuMolecule';
 import CrossDelete from '../../atoms/CrossDelete/CrossDelete';
 import IconDisplay from '../../atoms/IconDisplay/IconDisplay';
 import React, { useState } from 'react';
+import Draggable from 'react-draggable';
+
 
 const Narrative = props => {
     const [narrativeState, setNarrativeState] = useState(props.narrative);
@@ -48,31 +50,34 @@ const Narrative = props => {
     }
     
     return (
-        <article className='element' onClick={handleClick} >
+        <article>
+            <Draggable>
+                <div className='element' onClick={handleClick}>
+                    <aside className={getClassNames()}>
+                        <NarrativeMenu
+                            openModal={openModalNarrative} 
+                            narrative={narrativeState} 
+                            saveNarrative={saveNarrative} 
+                            setContent={setContent}
+                        />
+                    </aside>
 
-            <aside className={getClassNames()}>
-                <NarrativeMenu
-                    openModal={openModalNarrative} 
-                    narrative={narrativeState} 
-                    saveNarrative={saveNarrative} 
-                    setContent={setContent}
-                />
-            </aside>
-
-            <div className = 'content'>
-                
-                <div className="textBox">
-                    <TextBox content = {narrativeState.content} setContent={setContent} />
+                        <div className = 'content'>
+                            
+                            <div className="textBox">
+                                <TextBox content = {narrativeState.content} setContent={setContent} />
+                            </div>
+                            
+                            <div className = 'delete'>
+                                <CrossDelete />
+                            </div>
+                            
+                            <div className = 'display'>
+                                <IconDisplay />
+                            </div>
+                        </div>
                 </div>
-                
-                <div className = 'delete'>
-                    <CrossDelete />
-                </div>
-                
-                <div className = 'display'>
-                    <IconDisplay />
-                </div>
-            </div>
+            </Draggable>
 
             <style jsx>{`
                 .element {
