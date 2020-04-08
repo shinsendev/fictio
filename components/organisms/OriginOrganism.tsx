@@ -1,6 +1,7 @@
 import NarrativeMolecule from '../molecules/NarrativeMolecule/NarrativeMolecule';
 import NarrativeList from '../model/NarrativesList';
 import React from 'react';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 const Origin = props => {
     const [activeUuid, setActiveUuid] = React.useState('');
@@ -14,27 +15,46 @@ const Origin = props => {
         setActiveUuid(key);
     }
 
+    function handleOnDragEnd() {
+        // to do
+    }
+
     return (
         <div className="element">
-            {props.narratives.map(narrative => 
-                    <NarrativeMolecule 
-                        isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
-                        key={narrative.uuid} 
-                        narrative={narrative} 
-                        onClick={() => handleClick(narrative.uuid)}
-                        openModal={openModalOrigin} />
-            )}
-            <style jsx>{`
-                .element {
-                    max-width: 800px;
-                    margin: auto;
-                }
+            <DragDropContext onDragEnd={handleOnDragEnd} >
+                <Droppable droppableId='OriginDroppable' >
+                    {(provided) => (
+                        <div className='narrativesList' 
+                            innerRef={provided.innerRef}
+                            { ...provided.droppableProps } >
+                            
+                            {props.narratives.map( (narrative,index) => 
+                                    <NarrativeMolecule 
+                                        isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
+                                        key={narrative.uuid} 
+                                        narrative={narrative} 
+                                        onClick={() => handleClick(narrative.uuid)}
+                                        openModal={openModalOrigin} 
+                                        index = {index}/>
+                            )}
+                            {provided.placeholder}
+                        </div>
+                    )}
 
-                p {
-                    color:white;
-                }
-            `}</style>
+                </Droppable>
+                    <style jsx>{`
+                        .element {
+                            max-width: 800px;
+                            margin: auto;
+                        }
+
+                        p {
+                            color:white;
+                        }
+                    `}</style>
+            </DragDropContext>
         </div>
+
     );
 }
 
