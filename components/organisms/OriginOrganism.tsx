@@ -1,7 +1,6 @@
 import NarrativeMolecule from '../molecules/NarrativeMolecule/NarrativeMolecule';
 import NarrativeList from '../model/NarrativesList';
 import React from 'react';
-import {DragDropContext} from 'react-beautiful-dnd';
 
 const Origin = props => {
     const [activeUuid, setActiveUuid] = React.useState('');
