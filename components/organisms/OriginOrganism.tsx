@@ -2,8 +2,14 @@ import NarrativeMolecule from '../molecules/NarrativeMolecule/NarrativeMolecule'
 import NarrativeList from '../model/NarrativesList';
 import React from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { resetServerContext } from 'react-beautiful-dnd';
+import { renderToString } from 'react-dom/server';
+
 
 const Origin = props => {
+    // for using drag and drop
+    resetServerContext();
+
     const [activeUuid, setActiveUuid] = React.useState('');
     const narrativeList = new NarrativeList(props.narratives);      
 
@@ -22,12 +28,13 @@ const Origin = props => {
     return (
         <div className="element">
             <DragDropContext onDragEnd={handleOnDragEnd} >
-                <Droppable droppableId='OriginDroppable' >
-                    {(provided) => (
-                        <div className='narrativesList' 
-                            innerRef={provided.innerRef}
-                            { ...provided.droppableProps } >
-                            
+                <Droppable droppableId='droppable-1' >
+                    { provided => (
+                        <div 
+                            { ...provided.droppableProps } 
+                            ref={provided.innerRef}
+                            className='narrativesList' 
+                        >
                             {props.narratives.map( (narrative,index) => 
                                     <NarrativeMolecule 
                                         isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 

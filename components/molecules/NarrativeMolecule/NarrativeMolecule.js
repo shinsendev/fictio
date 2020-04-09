@@ -49,13 +49,13 @@ const Narrative = props => {
     }
     
     return (
-        <article>
-            <Draggable DraggableId={props.narrative.uuid} index={props.index}>
-                {(provided) => (
-                    <div className='element' onClick={handleClick} 
+        <article className='element' onClick={handleClick}>
+            <Draggable key={props.narrative.uuid} draggableId={props.narrative.uuid} index={props.index}>
+                { provided => (
+                    <div  
+                        ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        innerRef={provided.innerRef}
                     >
                         <aside className={getClassNames()}>
                             <NarrativeMenu
