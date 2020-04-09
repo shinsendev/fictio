@@ -50,7 +50,7 @@ const Narrative = props => {
     
     return (
         <article className='element' onClick={handleClick}>
-            <Draggable key={props.narrative.uuid} draggableId={props.narrative.uuid} index={props.index}>
+            <Draggable key={props.narrative.uuid} draggableId={props.draggableId} index={props.index}>
                 { provided => (
                     <div  
                         ref={provided.innerRef}

@@ -1,18 +1,20 @@
 import NarrativeMolecule from '../molecules/NarrativeMolecule/NarrativeMolecule';
 import NarrativeList from '../model/NarrativesList';
-import React from 'react';
+import React, {useState} from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { resetServerContext } from 'react-beautiful-dnd';
-import { renderToString } from 'react-dom/server';
-
 
 const Origin = props => {
-    // for using drag and drop
+
+    // Configuration for drag and drop
+    // we reset SSR context
     resetServerContext();
+    // set State for column
+    const [columnState, setColumnState] = useState('');
 
     const [activeUuid, setActiveUuid] = React.useState('');
-    const narrativeList = new NarrativeList(props.narratives);      
-
+    const narrativeList = new NarrativeList(props.narratives);
+    
     function openModalOrigin() {
         props.openModal();
     }
@@ -21,8 +23,23 @@ const Origin = props => {
         setActiveUuid(key);
     }
 
-    function handleOnDragEnd() {
-        // to do
+    function handleOnDragEnd(result) {
+        const {destination, source, draggableId} = result;
+
+        if(!destination) {
+            return;
+        }
+
+        if (destination.droppableId === source.droppableId && destination.index === source.index) {
+            return;
+        }
+
+        // we keep in a var the narrative we have dragged
+        const selectedNarrative = props.narratives[source.index];
+        // we remove the narrative that we have moved        
+        props.narratives.splice(source.index, 1);
+        // we add the narrative to a new place
+        props.narratives.splice(destination.index, 0, selectedNarrative);
     }
 
     return (
@@ -38,11 +55,13 @@ const Origin = props => {
                             {props.narratives.map( (narrative,index) => 
                                     <NarrativeMolecule 
                                         isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
-                                        key={narrative.uuid} 
+                                        key = {narrative.uuid} 
                                         narrative={narrative} 
                                         onClick={() => handleClick(narrative.uuid)}
                                         openModal={openModalOrigin} 
-                                        index = {index}/>
+                                        index = {index}
+                                        draggableId = {narrative.uuid}
+                                    />
                             )}
                             {provided.placeholder}
                         </div>
