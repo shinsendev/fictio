@@ -8,7 +8,7 @@ const Narrative = props => {
     const [narrativeState, setNarrativeState] = useState(props.narrative);
 
     function openModalNarrative() {
-        props.openModal();
+        props.openModal(narrativeState.uuid);
     }
 
     function setContent(content) {

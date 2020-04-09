@@ -7,7 +7,9 @@ import Narrative from '../molecules/NarrativeMolecule/NarrativeMolecule';
 
 const OriginTemplate = props => {
     const [isOpen, setIsOpen] = useState(false);
-
+    const [modalContent, setModalContent] = useState('alternate');
+    //const [activeUuid, setActiveUuid] = React.useState('');
+   
     const useStyles = makeStyles((theme) => ({
         versioning: {
           position: 'absolute',
@@ -21,27 +23,62 @@ const OriginTemplate = props => {
         },
       }));
 
+
     const classes = useStyles();
 
     const content = (
         <div className={classes.versioning}>
         <p>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            {modalContent}
         </p>
         </div>
     );
-    
     function handleOpen() {
         setIsOpen(true);
     }
     function handleClose() {
         setIsOpen(false);
     }
-
-    function openModalOriginsTemplate(){
+    function openModalOriginsTemplate(uuid){
         // narrative = getNarrative;
+        const myNarrative = getNarrative(uuid);
+        console.log('getNarrative');
+        console.log(myNarrative); 
         setIsOpen(true);
+        setModalContent(uuid);
+        console.log('setIsOpen');
+        console.log(uuid);
     }
+    
+/*     function setActiveNarrativeUuid(uuid) {
+        setActiveUuid(uuid);
+        console.log('setActiveNarrativeUuid');
+        
+    } */
+
+// my fetch narrative function
+     function getNarrative(uuid) {
+        fetch('http://127.0.0.1:8000/api/narratives/'+uuid+'.json')
+          .then(response => {
+              alert('hello');
+              return 'response.json()';
+        }); 
+      }
+
+  /*     function getNarrative(uuid) {
+          const xhr = new XMLHttpRequest();
+          const url = 'http://127.0.0.1:8000/api/narratives/'+uuid+'.json';
+         // const narrativeData = 'json';
+          xhr.responseType = 'json' ;
+          xhr.onreadystatechange = ()=> {
+              if(xhr.readyState === XMLHttpRequest.DONE){
+                  return xhr.response;
+              }
+              xhr.open('GET',url);
+              xhr.send();
+          }
+      } */
+
     return (
         <div>
             <Header />
@@ -57,7 +94,10 @@ const OriginTemplate = props => {
                     </div>
                 </Modal>
 
-                <Origin narratives = {props.narratives} openModal={openModalOriginsTemplate} />
+                <Origin 
+                    narratives={props.narratives} 
+                    openModal={openModalOriginsTemplate} 
+                     />
             </div>
             <style jsx>{`
                 .container {
