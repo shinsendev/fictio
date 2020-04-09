@@ -40,44 +40,26 @@ const OriginTemplate = props => {
         setIsOpen(false);
     }
     function openModalOriginsTemplate(uuid){
-        // narrative = getNarrative;
         const myNarrative = getNarrative(uuid);
-        console.log('getNarrative');
-        console.log(myNarrative); 
-        setIsOpen(true);
-        setModalContent(uuid);
-        console.log('setIsOpen');
-        console.log(uuid);
     }
-    
-/*     function setActiveNarrativeUuid(uuid) {
-        setActiveUuid(uuid);
-        console.log('setActiveNarrativeUuid');
-        
-    } */
 
-// my fetch narrative function
-     function getNarrative(uuid) {
-        fetch('http://127.0.0.1:8000/api/narratives/'+uuid+'.json')
-          .then(response => {
-              alert('hello');
-              return 'response.json()';
+    // my final fetch narrative function
+
+    function getNarrative(uuid) {
+    fetch('http://127.0.0.1:8000/api/narratives/'+uuid+'.json')
+    .then(response => {
+        //alert('hello');
+        const data = response.json();
+        return data;
+    }).then(data => {
+        console.log(data)
+        return data;
+        }).then(data => {
+            setIsOpen(true);
+            setModalContent(data.content);
+            console.log('setIsOpen');
         }); 
-      }
-
-  /*     function getNarrative(uuid) {
-          const xhr = new XMLHttpRequest();
-          const url = 'http://127.0.0.1:8000/api/narratives/'+uuid+'.json';
-         // const narrativeData = 'json';
-          xhr.responseType = 'json' ;
-          xhr.onreadystatechange = ()=> {
-              if(xhr.readyState === XMLHttpRequest.DONE){
-                  return xhr.response;
-              }
-              xhr.open('GET',url);
-              xhr.send();
-          }
-      } */
+}
 
     return (
         <div>
