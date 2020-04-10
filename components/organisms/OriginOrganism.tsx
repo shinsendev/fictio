@@ -44,7 +44,7 @@ const Origin = props => {
 
     return (
         <div className="element">
-            <DragDropContext onDragEnd={handleOnDragEnd} >
+            <DragDropContext onDragEnd={handleOnDragEnd} className='dropContext element' >
                 <Droppable droppableId='droppable-1' >
                     { provided => (
                         <div 
@@ -68,7 +68,8 @@ const Origin = props => {
                     )}
 
                 </Droppable>
-                    <style jsx>{`
+            </DragDropContext>
+            <style jsx>{`
                         .element {
                             max-width: 800px;
                             margin: auto;
@@ -77,8 +78,7 @@ const Origin = props => {
                         p {
                             color:white;
                         }
-                    `}</style>
-            </DragDropContext>
+            `}</style>
         </div>
 
     );

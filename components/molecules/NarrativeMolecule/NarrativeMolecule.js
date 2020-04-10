@@ -49,14 +49,17 @@ const Narrative = props => {
     }
     
     return (
-        <article className='element' onClick={handleClick}>
+        <div>  
             <Draggable key={props.narrative.uuid} draggableId={props.draggableId} index={props.index}>
                 { provided => (
-                    <div  
+                    <article  
+                        className='element'
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
+                        onClick={handleClick}
                     >
+
                         <aside className={getClassNames()}>
                             <NarrativeMenu
                                 openModal={openModalNarrative} 
@@ -80,10 +83,9 @@ const Narrative = props => {
                                     <IconDisplay />
                                 </div>
                             </div>
-                    </div>
+                    </article>
                 )}
             </Draggable>
-
             <style jsx>{`
                 .element {
                     display: flex;
@@ -120,8 +122,8 @@ const Narrative = props => {
                 }
 
             `}</style>
+        </div>
 
-        </article>
     );
 }
 
