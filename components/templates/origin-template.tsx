@@ -57,7 +57,7 @@ const OriginTemplate = props => {
                     </div>
                 </Modal>
 
-                <Origin narratives = {props.narratives} openModal={openModalOriginsTemplate} />
+                <Origin narratives={props.narratives} openModal={openModalOriginsTemplate} />
             </div>
             <style jsx>{`
                 .container {
