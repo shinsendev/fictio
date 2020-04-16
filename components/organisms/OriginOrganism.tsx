@@ -94,14 +94,14 @@ const Origin = props => {
                 </Droppable>
             </DragDropContext>
             <style jsx>{`
-                        .element {
-                            max-width: 800px;
-                            margin: auto;
-                        }
+                .element {
+                    max-width: 800px;
+                    margin: auto;
+                }
 
-                        p {
-                            color:white;
-                        }
+                p {
+                    color:white;
+                }
             `}</style>
         </div>
 
