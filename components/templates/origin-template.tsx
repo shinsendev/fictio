@@ -94,7 +94,7 @@ const OriginTemplate = props => {
             setIsOpen(true);
         }
       } 
-      
+
     function handleSaveAndClose() {
         alert('save');
         ToggleSatusModal();
@@ -120,8 +120,7 @@ const OriginTemplate = props => {
     return (
         <div>
             <Header />
-            <div className="container">            
-            
+            <div className="container">              
                 <Modal
                     open={isOpen}
                     onClose={ToggleSatusModal}
@@ -132,7 +131,6 @@ const OriginTemplate = props => {
                         <div>{content}</div>
                     </div>
                 </Modal>
-
                 <Origin 
                     narratives={props.narratives} 
                     openModal={openModalOriginsTemplate} 
