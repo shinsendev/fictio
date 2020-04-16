@@ -15,7 +15,7 @@ const Origin = props => {
     }
     
     function sendActiveNarrativeUuidToParent(uuid) {
-        props.setActiveNarrativeUuid('toto');
+        props.setActiveNarrativeUuid(uuid);
     }
 
     return (
