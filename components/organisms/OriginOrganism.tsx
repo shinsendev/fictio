@@ -7,20 +7,15 @@ const Origin = props => {
     const narrativeList = new NarrativeList(props.narratives);
 
     function openModalOrigin(uuid) {
-        console.log('openModalOrigin'); 
         props.openModal(uuid);
     }
 
     function handleClick(key) {
-        setActiveUuid(key);
-        console.log('handleClick');
-        console.log(activeUuid); 
+        setActiveUuid(key); 
     }
     
     function sendActiveNarrativeUuidToParent(uuid) {
         props.setActiveNarrativeUuid('toto');
-        console.log('sendActiveNarrativeUuidToParent');
-        console.log(activeUuid);
     }
 
     return (
