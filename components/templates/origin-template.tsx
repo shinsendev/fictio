@@ -4,7 +4,6 @@ import Origin from '../organisms/OriginOrganism';
 import Modal from '@material-ui/core/Modal';
 import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TextBox from '../atoms/TextBox/TextBox';
 
 const OriginTemplate = props => {
     const [isOpen, setIsOpen] = useState(false);
@@ -95,12 +94,7 @@ const OriginTemplate = props => {
             setIsOpen(true);
         }
       } 
- /*    function handleOpen() {
-        setIsOpen(true);
-    }
-    function handleClose() {
-        setIsOpen(false);
-    } */
+      
     function handleSaveAndClose() {
         alert('save');
         ToggleSatusModal();
