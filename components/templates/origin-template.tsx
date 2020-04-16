@@ -4,15 +4,12 @@ import Origin from '../organisms/OriginOrganism';
 import Modal from '@material-ui/core/Modal';
 import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-//import theme from '../src/theme';
-import Narrative from '../molecules/NarrativeMolecule/NarrativeMolecule';
-import useSWR from 'swr';
+import TextBox from '../atoms/TextBox/TextBox';
 
 const OriginTemplate = props => {
     const [isOpen, setIsOpen] = useState(false);
     const [modalContent, setModalContent] = useState('alternate');
     const [modalVersioning, setModalVersioning] = useState('alternateVersioning');
-    //const [activeUuid, setActiveUuid] = React.useState('');
    
     const useStyles = makeStyles((theme) => ({
         versioning: {
@@ -26,7 +23,6 @@ const OriginTemplate = props => {
           margin: 'auto',
           border: '2px solid #000',
           boxShadow: theme.shadows[5],
-          //padding: theme.spacing(2, 4, 3),
         },
       }));
 
@@ -43,7 +39,7 @@ const OriginTemplate = props => {
                     <p>
                         {modalContent}
                     </p>
-                    <button onClick={handleClose}>Save and Close </button>
+                    <button onClick={handleSaveAndClose}>SAVE AND CLOSE</button>
                 </div>
                 <div>
                     {modalVersioning}
@@ -75,7 +71,7 @@ const OriginTemplate = props => {
                     border-radius: 5px;
                     min-height: 45px;
                     /* max-height: 150px; */
-                    margin-bottom : 2%;
+                    margin-bottom : 10px;
                 }
                 button {
                     display:block;
@@ -91,28 +87,39 @@ const OriginTemplate = props => {
         </div>
        
     );
+     function ToggleSatusModal() {
+        
+        if (isOpen === true) {
+            setIsOpen(false);
+        } else {
+            setIsOpen(true);
+        }
+      } 
     function handleOpen() {
         setIsOpen(true);
     }
     function handleClose() {
         setIsOpen(false);
     }
+    function handleSaveAndClose() {
+        alert('save');
+        ToggleSatusModal();
+        
+    }
     function openModalOriginsTemplate(uuid){
         const myNarrative = getNarrative(uuid);
     }
-    
-// my final fetch narrative function
+
+// my fetch narrative function
 
       function getNarrative(uuid) {
         fetch('http://127.0.0.1:8000/api/narratives/'+uuid+'.json')
         .then(response => {
-            //alert('hello');
             return response.json();
             }).then(data => {
                 setIsOpen(true);
                 setModalContent(data.content);
                 setModalVersioning( data.fragments.map(fragment => (<p key={fragment.uuid}>{fragment.content}</p>)));
-                console.log('setIsOpen');
                 });
     }   
  
