@@ -3,6 +3,7 @@ import NarrativeMenu from '../NarrativeMenuMolecule/NarrativeMenuMolecule';
 import CrossDelete from '../../atoms/CrossDelete/CrossDelete';
 import IconDisplay from '../../atoms/IconDisplay/IconDisplay';
 import React, { useState } from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 
 const Narrative = props => {
     const [narrativeState, setNarrativeState] = useState(props.narrative);
@@ -48,32 +49,43 @@ const Narrative = props => {
     }
     
     return (
-        <article className='element' onClick={handleClick} >
+        <div>  
+            <Draggable key={props.narrative.uuid} draggableId={props.draggableId} index={props.index}>
+                { provided => (
+                    <article  
+                        className='element'
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        onClick={handleClick}
+                    >
 
-            <aside className={getClassNames()}>
-                <NarrativeMenu
-                    openModal={openModalNarrative} 
-                    narrative={narrativeState} 
-                    saveNarrative={saveNarrative} 
-                    setContent={setContent}
-                />
-            </aside>
+                        <aside className={getClassNames()}>
+                            <NarrativeMenu
+                                openModal={openModalNarrative} 
+                                narrative={narrativeState} 
+                                saveNarrative={saveNarrative} 
+                                setContent={setContent}
+                            />
+                        </aside>
 
-            <div className = 'content'>
-                
-                <div className="textBox">
-                    <TextBox content = {narrativeState.content} setContent={setContent} />
-                </div>
-                
-                <div className = 'delete'>
-                    <CrossDelete />
-                </div>
-                
-                <div className = 'display'>
-                    <IconDisplay />
-                </div>
-            </div>
-
+                            <div className = 'content'>
+                                
+                                <div className="textBox">
+                                    <TextBox content = {narrativeState.content} setContent={setContent} />
+                                </div>
+                                
+                                <div className = 'delete'>
+                                    <CrossDelete />
+                                </div>
+                                
+                                <div className = 'display'>
+                                    <IconDisplay />
+                                </div>
+                            </div>
+                    </article>
+                )}
+            </Draggable>
             <style jsx>{`
                 .element {
                     display: flex;
@@ -110,8 +122,8 @@ const Narrative = props => {
                 }
 
             `}</style>
+        </div>
 
-        </article>
     );
 }
 
