@@ -31,7 +31,7 @@ const OriginTemplate = props => {
 
     const content = (
         <div className={classes.versioning} >
-            <div className="cross" onClick={handleClose}>
+            <div className="cross" onClick={ToggleSatusModal}>
                 <CrossDelete />
             </div>
             <article>
@@ -95,12 +95,12 @@ const OriginTemplate = props => {
             setIsOpen(true);
         }
       } 
-    function handleOpen() {
+ /*    function handleOpen() {
         setIsOpen(true);
     }
     function handleClose() {
         setIsOpen(false);
-    }
+    } */
     function handleSaveAndClose() {
         alert('save');
         ToggleSatusModal();
@@ -130,7 +130,7 @@ const OriginTemplate = props => {
             
                 <Modal
                     open={isOpen}
-                    onClose={handleClose}
+                    onClose={ToggleSatusModal}
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description">
                     <div>
