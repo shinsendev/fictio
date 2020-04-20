@@ -35,13 +35,17 @@ const Origin = props => {
 
     const [activeUuid, setActiveUuid] = React.useState('');
     const narrativeList = new NarrativeList(props.narratives);
-    
-    function openModalOrigin() {
-        props.openModal();
+
+    function openModalOrigin(uuid) {
+        props.openModal(uuid);
     }
 
     function handleClick(key) {
-        setActiveUuid(key);
+        setActiveUuid(key); 
+    }
+    
+    function sendActiveNarrativeUuidToParent(uuid) {
+        props.setActiveNarrativeUuid(uuid);
     }
 
     function handleOnDragEnd(result) {
