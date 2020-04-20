@@ -4,11 +4,13 @@ import Origin from '../organisms/OriginOrganism';
 import Modal from '@material-ui/core/Modal';
 import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import ModalVersioningTemplate from './modal-versioning-template';
 
 const OriginTemplate = props => {
     const [isOpen, setIsOpen] = useState(false);
     const [modalContent, setModalContent] = useState('alternate');
     const [modalVersioning, setModalVersioning] = useState('alternateVersioning');
+    const [activeUuid, setActiveUuid,] = useState('uuid');
    
     const useStyles = makeStyles((theme) => ({
         versioning: {
@@ -102,7 +104,9 @@ const OriginTemplate = props => {
     }
     function openModalOriginsTemplate(uuid){
         const myNarrative = getNarrative(uuid);
+        setActiveUuid(uuid);
     }
+    console.log(' mon uuid est : '+activeUuid);
 
 // my fetch narrative function
 
@@ -121,16 +125,6 @@ const OriginTemplate = props => {
         <div>
             <Header />
             <div className="container">              
-                <Modal
-                    open={isOpen}
-                    onClose={ToggleSatusModal}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description">
-                    <div>
-                        
-                        <div>{content}</div>
-                    </div>
-                </Modal>
                 <Origin 
                     narratives={props.narratives} 
                     openModal={openModalOriginsTemplate} 
