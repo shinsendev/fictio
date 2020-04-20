@@ -1,7 +1,5 @@
 import Header from '../organisms/Header';
-import CrossDelete from'../atoms/CrossDelete/CrossDelete';
 import Origin from '../organisms/OriginOrganism';
-import Modal from '@material-ui/core/Modal';
 import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ModalVersioningTemplate from './modal-versioning-template';
@@ -103,20 +101,31 @@ const OriginTemplate = props => {
         
     // }
 
-    function openModalOriginTemplate(uuid){
-        fetch(process.env.edoAPIUrl + 'narratives/'+uuid+'.json')
+    function openModalOriginTemplate(uuid) {
+        
+        // get data
+        fetch(process.env.edoAPIUrl + 'narratives/' + uuid + '.json')
         .then(response => {
-            return response.json();
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Request failed!');
         })
         .then(data => {
-                setModalContent(data.content);
-                setModalVersioning( data.fragments.map(fragment => (<p key={fragment.uuid}>{fragment.content}</p>)));
-                setActiveNarrative(data);
+                // we need to create a variable to keep the data, if not, states are not changed
+                const narrative = data;
+                setModalContent(narrative.content);
+                setModalVersioning( narrative.fragments.map(fragment => (<p key={fragment.uuid}>{fragment.content}</p>)));
+                setActiveNarrative(narrative);
                 setActiveUuid(uuid);
+                setIsOpen(true);
         })
-        .then(data => {
-            setIsOpen(true);
-        });
+        .catch((networkError) => {
+            console.log('Error when fetching in origin template : ' + networkError.message);
+          });
+        ;
+
+        console.log(activeNarrative);
     }
 
     // // my fetch narrative function
@@ -140,11 +149,12 @@ const OriginTemplate = props => {
         <div>
             <Header />
             <div className="container">
+
                 <ModalVersioningTemplate 
-                    isOpen={isOpen}
                     narrativeUuid={activeUuid}
                     content={modalContent}
                     narrative={activeNarrative}
+                    isOpen={isOpen}
                 />
                 <Origin
                     narratives={props.narratives} 

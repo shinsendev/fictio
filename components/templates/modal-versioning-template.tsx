@@ -5,7 +5,7 @@ import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const ModalVersioningTemplate = props => {
-    const [modalContent, setModalContent] = useState('alternate');
+    const [modalContent, setModalContent] = useState(props.content);
     const [modalVersioning, setModalVersioning] = useState('alternateVersioning');
 
     //const [activeUuid, setActiveUuid,] = useState('uuid');
@@ -31,18 +31,12 @@ const ModalVersioningTemplate = props => {
 
     return(    
         <div >
-            <h2> Mon uuid est : {props.narrativeUuid} </h2>  
-            <div >
-                <p>
-                    {modalContent}
-                </p>
-            </div>
             <Modal
                     open={props.isOpen}
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description">
                     <div> 
-                        <p>{modalContent}</p>
+                        <p>{props.content}</p>
                     </div>
             </Modal>
             <style global jsx>{`
