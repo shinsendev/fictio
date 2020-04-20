@@ -13,7 +13,22 @@ const ModalVersioningTemplate = props => {
     }
 
     function save() {
-        alert('save');
+
+        const body = {
+            "uuid": props.narrative.uuid,
+            "content": props.narrative.content, //todo : change by content of the content textBox
+            "type": "narrative",
+            "fiction_uuid": "1b7df281-ae2a-40bf-ad6a-ac60409a9ce6"
+        };
+
+        const response = fetch(process.env.edoAPIUrl+'narratives', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+          })
+
+        //todo: replace with a real modal
+        alert("Save ok");
         props.closeModal(); 
     }
 
@@ -68,11 +83,16 @@ const ModalVersioningTemplate = props => {
                     </div>
                 </article>
                 <style global jsx>{`
-                .cross {
-                    position:absolute;
-                    top:20px;
-                    right:20px;
-                }
+                    .cross {
+                        position:absolute;
+                        top:20px;
+                        right:20px;
+                    }
+
+                    .cross:hover {
+                        cursor:pointer;
+                    }
+
                     article {
                         width:100%;
                         display:flex;
@@ -80,11 +100,13 @@ const ModalVersioningTemplate = props => {
                         justify-content:center;
                         padding-top:20px;
                     }
+
                     div {
                         margin: 0px 10px 0px 10px ;
                         padding:0 5% 0 5% 0 5% 0 5%;
                         flex-direction:column;
                     }
+
                     p {
                         padding: 10px 20px;
                         background: #262626;
@@ -95,6 +117,7 @@ const ModalVersioningTemplate = props => {
                         /* max-height: 150px; */
                         margin-bottom : 10px;
                     }
+
                     button {
                         display:block;
                         margin:auto;
