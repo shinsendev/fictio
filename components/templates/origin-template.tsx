@@ -106,7 +106,6 @@ const OriginTemplate = props => {
         const myNarrative = getNarrative(uuid);
         setActiveUuid(uuid);
     }
-    console.log(' mon uuid est : '+activeUuid);
 
     // my fetch narrative function
       function getNarrative(uuid) {
