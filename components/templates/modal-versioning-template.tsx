@@ -45,10 +45,10 @@ const ModalVersioningTemplate = props => {
             versioning: {
               position: 'absolute',
               top:'0px',
-              left:'0px',
+              left:'15%',
               background: 'black',
               color: 'white',
-              width: '100%',
+              width: '70%',
               height:'100%',
               margin: 'auto',
               border: '2px solid #000',
