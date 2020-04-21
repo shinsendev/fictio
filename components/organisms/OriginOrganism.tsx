@@ -8,8 +8,12 @@ const Origin = props => {
     // Configuration for drag and drop
     // we reset SSR context
     resetServerContext();
+
     // set State for column
     const [columnState, setColumnState] = useState('');
+    
+    const [activeUuid, setActiveUuid] = React.useState('');
+    const narrativeList = new NarrativeList(props.narratives);
 
     /**
      *
@@ -33,21 +37,36 @@ const Origin = props => {
         alert("Reorder ok for " + narrativeUuid);
     }
 
-    const [activeUuid, setActiveUuid] = React.useState('');
-    const narrativeList = new NarrativeList(props.narratives);
 
+
+    /**
+     * 
+     * @param uuid 
+     */
     function openModalOrigin(uuid) {
         props.openModal(uuid);
     }
 
+    /**
+     * 
+     * @param key 
+     */
     function handleClick(key) {
         setActiveUuid(key); 
     }
     
+    /**
+     * 
+     * @param uuid 
+     */
     function sendActiveNarrativeUuidToParent(uuid) {
         props.setActiveNarrativeUuid(uuid);
     }
 
+    /**
+     * 
+     * @param result 
+     */
     function handleOnDragEnd(result) {
         const {destination, source, draggableId} = result;
 
