@@ -37,8 +37,6 @@ const Origin = props => {
         alert("Reorder ok for " + narrativeUuid);
     }
 
-
-
     /**
      * 
      * @param uuid 
@@ -89,6 +87,30 @@ const Origin = props => {
         postReorder(selectedNarrative.uuid);
     }
 
+    function displayNarrative(narrative, index = 0) {
+
+        var response = [];
+        response.push(
+            <NarrativeMolecule 
+                isActive={`${(narrative.uuid == narrative) ? true : false}`} 
+                key = {narrative.uuid} 
+                narrative={narrative} 
+                onClick={() => handleClick(narrative.uuid)}
+                openModal={openModalOrigin} 
+                index = {index} //todo : to check
+                draggableId = {narrative.uuid}
+            />
+        );
+
+        if(narrative.children) {
+            narrative.children.map( (child, index) => {
+                response.push(displayNarrative(child, index))
+            })
+        }
+        
+        return response;
+    }
+
     return (
         <div className="element">
             <DragDropContext onDragEnd={handleOnDragEnd} className='dropContext element' >
@@ -99,17 +121,7 @@ const Origin = props => {
                             ref={provided.innerRef}
                             className='narrativesList' 
                         >
-                            {props.narratives.map( (narrative,index) => 
-                                    <NarrativeMolecule 
-                                        isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
-                                        key = {narrative.uuid} 
-                                        narrative={narrative} 
-                                        onClick={() => handleClick(narrative.uuid)}
-                                        openModal={openModalOrigin} 
-                                        index = {index}
-                                        draggableId = {narrative.uuid}
-                                    />
-                            )}
+                            {displayNarrative(props.narratives[0])}
                             {provided.placeholder}
                         </div>
                     )}
