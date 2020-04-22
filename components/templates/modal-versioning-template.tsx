@@ -3,20 +3,22 @@ import Origin from '../organisms/OriginOrganism';
 import Modal from '@material-ui/core/Modal';
 import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import TextBox from '../../components/atoms/TextBox/TextBox';
+import NarrativeVersionedMolecule from '../../components/molecules/NarrativeVersionedMolecule/NarrativeVersionedMolecule';
 
 const ModalVersioningTemplate = props => {
-
     const [isOpen, setIsOpen] = useState(props.isOpen);
+    const [narrativeState, setNarrativeState] = useState('basic');
 
     function closeModal() {
         props.closeModal();
     }
 
-    function save() {
+    function save(content) {
 
         const body = {
             "uuid": props.narrative.uuid,
-            "content": props.narrative.content, //todo : change by content of the content textBox
+            "content": content, //todo : change by content of the content textBox
             "type": "narrative",
             "fiction_uuid": "1b7df281-ae2a-40bf-ad6a-ac60409a9ce6"
         };
@@ -58,6 +60,10 @@ const ModalVersioningTemplate = props => {
 
         const classes = useStyles();
 
+       function handleClick(event){
+            setNarrativeState(event.target.value);        
+        }
+
         return (
             <div className={classes.versioning} >
 
@@ -67,19 +73,17 @@ const ModalVersioningTemplate = props => {
 
                 <article>
                     <div>
+                        <TextBox content = {narrativeState} />
                         <p>
                             {content}
                         </p>
                         <button onClick={save}>save & close</button>
                     </div>
                     <div>
-                        {fragments.map(fragment => {
-                            return (
-                            <article>
-                                <p key={fragment.uuid}>{fragment.content}</p>
-                            </article>
-                            )}
-                        )}
+                        <NarrativeVersionedMolecule 
+                            narrative= {narrative} 
+                            handleClick = {handleClick} 
+                            save={save}/>
                     </div>
                 </article>
                 <style global jsx>{`
@@ -136,10 +140,10 @@ const ModalVersioningTemplate = props => {
     return(    
         <div >
             <Modal
-                    open={props.isOpen}
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description">
-                    {getContent(props.narrative)}
+                open={props.isOpen}
+                aria-labelledby="simple-modal-title"
+                aria-describedby="simple-modal-description">
+                {getContent(props.narrative)}
             </Modal>
             <style global jsx>{`
                 h1,h2,p {

@@ -4,7 +4,7 @@ import IconSave from '../../atoms/IconSaveAtom/IconSaveAtom';
 
 const NarrativeMenu = props => {
     function openModal() {    
-       props.openModal();
+        props.openModal();
     }
 
     function saveNarrative() {
