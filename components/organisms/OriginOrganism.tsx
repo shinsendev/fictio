@@ -3,6 +3,7 @@ import NarrativeList from '../model/NarrativesList';
 import React, {useState} from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { resetServerContext } from 'react-beautiful-dnd';
+import styles from './OriginOrganism.module.css';
 
 const Origin = props => {
     // Configuration for drag and drop
@@ -11,7 +12,6 @@ const Origin = props => {
 
     // set State for column
     const [columnState, setColumnState] = useState('');
-    
     const [activeUuid, setActiveUuid] = React.useState('');
     const narrativeList = new NarrativeList(props.narratives);
 
@@ -49,8 +49,8 @@ const Origin = props => {
      * 
      * @param key 
      */
-    function handleClick(key) {
-        setActiveUuid(key); 
+    function handleClick(narrativeUuid) {
+        setActiveUuid(narrativeUuid);
     }
     
     /**
@@ -113,7 +113,7 @@ const Origin = props => {
         var response = [];
 
         response.push(
-            <article className={'lvl-'+narrative.lvl} key={narrative.uuid}>
+            <article className={styles.lvl} key={narrative.uuid}>
                 <NarrativeMolecule 
                     isActive={`${(narrative.uuid == narrative) ? true : false}`} 
                     key = {narrative.uuid} 
@@ -157,13 +157,6 @@ const Origin = props => {
                     color:white;
                 }
 
-                .lvl-1 {
-                    margin-left: 10px;
-                }
-
-                .lvl-2 {
-                    margin-left: 20px;
-                }
             `}</style>
         </div>
 
