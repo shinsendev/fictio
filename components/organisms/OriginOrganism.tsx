@@ -3,13 +3,17 @@ import NarrativeList from '../model/NarrativesList';
 import React, {useState} from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { resetServerContext } from 'react-beautiful-dnd';
+import styles from './OriginOrganism.module.css';
 
 const Origin = props => {
     // Configuration for drag and drop
     // we reset SSR context
     resetServerContext();
+
     // set State for column
     const [columnState, setColumnState] = useState('');
+    const [activeUuid, setActiveUuid] = useState('');
+    const narrativeList = new NarrativeList(props.narratives);
 
     /**
      *
@@ -33,21 +37,26 @@ const Origin = props => {
         alert("Reorder ok for " + narrativeUuid);
     }
 
-    const [activeUuid, setActiveUuid] = React.useState('');
-    const narrativeList = new NarrativeList(props.narratives);
-
+    /**
+     * 
+     * @param uuid 
+     */
     function openModalOrigin(uuid) {
         props.openModal(uuid);
     }
 
-    function handleClick(key) {
-        setActiveUuid(key); 
-    }
-    
-    function sendActiveNarrativeUuidToParent(uuid) {
-        props.setActiveNarrativeUuid(uuid);
+    /**
+     * 
+     * @param key 
+     */
+    function handleClick(narrativeUuid) {
+        setActiveUuid(narrativeUuid);
     }
 
+    /**
+     * 
+     * @param result 
+     */
     function handleOnDragEnd(result) {
         const {destination, source, draggableId} = result;
 
@@ -70,6 +79,50 @@ const Origin = props => {
         postReorder(selectedNarrative.uuid);
     }
 
+    /**
+     * 
+     * @param children 
+     */
+    function displayChildren(children) {
+        var response = [];
+        
+        if(children) {
+            children.map( (child, index) => {
+                response.push(displayNarrative(child, index))
+            })
+        }
+
+        return response;
+    }
+    
+    /**
+     * 
+     * @param narrative 
+     * @param index 
+     */
+    function displayNarrative(narrative, index = 0) {
+
+        var response = [];
+
+        response.push(
+            <article className={styles.lvl} key={narrative.uuid}>
+                <NarrativeMolecule 
+                    isActive={`${(narrative.uuid === activeUuid) ? true : false}`}
+                    // isActive={isActive}
+                    key = {narrative.uuid} 
+                    narrative={narrative} 
+                    onClick={() => handleClick(narrative.uuid)}
+                    openModal={openModalOrigin} 
+                    index = {index} //todo : to check
+                    draggableId = {narrative.uuid}
+                />
+                {displayChildren(narrative.children)}
+            </article>
+        );
+        
+        return response;
+    }
+
     return (
         <div className="element">
             <DragDropContext onDragEnd={handleOnDragEnd} className='dropContext element' >
@@ -80,17 +133,7 @@ const Origin = props => {
                             ref={provided.innerRef}
                             className='narrativesList' 
                         >
-                            {props.narratives.map( (narrative,index) => 
-                                    <NarrativeMolecule 
-                                        isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
-                                        key = {narrative.uuid} 
-                                        narrative={narrative} 
-                                        onClick={() => handleClick(narrative.uuid)}
-                                        openModal={openModalOrigin} 
-                                        index = {index}
-                                        draggableId = {narrative.uuid}
-                                    />
-                            )}
+                            {displayNarrative(props.narratives[0])}
                             {provided.placeholder}
                         </div>
                     )}
@@ -106,9 +149,9 @@ const Origin = props => {
                 p {
                     color:white;
                 }
+
             `}</style>
         </div>
-
     );
 }
 
