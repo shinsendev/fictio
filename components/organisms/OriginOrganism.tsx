@@ -12,7 +12,7 @@ const Origin = props => {
 
     // set State for column
     const [columnState, setColumnState] = useState('');
-    const [activeUuid, setActiveUuid] = React.useState('');
+    const [activeUuid, setActiveUuid] = useState('');
     const narrativeList = new NarrativeList(props.narratives);
 
     /**
@@ -51,14 +51,6 @@ const Origin = props => {
      */
     function handleClick(narrativeUuid) {
         setActiveUuid(narrativeUuid);
-    }
-    
-    /**
-     * 
-     * @param uuid 
-     */
-    function sendActiveNarrativeUuidToParent(uuid) {
-        props.setActiveNarrativeUuid(uuid);
     }
 
     /**
@@ -115,7 +107,8 @@ const Origin = props => {
         response.push(
             <article className={styles.lvl} key={narrative.uuid}>
                 <NarrativeMolecule 
-                    isActive={`${(narrative.uuid == narrative) ? true : false}`} 
+                    isActive={`${(narrative.uuid === activeUuid) ? true : false}`}
+                    // isActive={isActive}
                     key = {narrative.uuid} 
                     narrative={narrative} 
                     onClick={() => handleClick(narrative.uuid)}
@@ -159,7 +152,6 @@ const Origin = props => {
 
             `}</style>
         </div>
-
     );
 }
 
