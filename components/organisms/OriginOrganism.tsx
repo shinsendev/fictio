@@ -87,26 +87,45 @@ const Origin = props => {
         postReorder(selectedNarrative.uuid);
     }
 
-    function displayNarrative(narrative, index = 0) {
-
+    /**
+     * 
+     * @param children 
+     */
+    function displayChildren(children) {
         var response = [];
-        response.push(
-            <NarrativeMolecule 
-                isActive={`${(narrative.uuid == narrative) ? true : false}`} 
-                key = {narrative.uuid} 
-                narrative={narrative} 
-                onClick={() => handleClick(narrative.uuid)}
-                openModal={openModalOrigin} 
-                index = {index} //todo : to check
-                draggableId = {narrative.uuid}
-            />
-        );
-
-        if(narrative.children) {
-            narrative.children.map( (child, index) => {
+        
+        if(children) {
+            children.map( (child, index) => {
                 response.push(displayNarrative(child, index))
             })
         }
+
+        return response;
+    }
+    
+    /**
+     * 
+     * @param narrative 
+     * @param index 
+     */
+    function displayNarrative(narrative, index = 0) {
+
+        var response = [];
+
+        response.push(
+            <article className={'lvl-'+narrative.lvl} key={narrative.uuid}>
+                <NarrativeMolecule 
+                    isActive={`${(narrative.uuid == narrative) ? true : false}`} 
+                    key = {narrative.uuid} 
+                    narrative={narrative} 
+                    onClick={() => handleClick(narrative.uuid)}
+                    openModal={openModalOrigin} 
+                    index = {index} //todo : to check
+                    draggableId = {narrative.uuid}
+                />
+                {displayChildren(narrative.children)}
+            </article>
+        );
         
         return response;
     }
@@ -136,6 +155,14 @@ const Origin = props => {
 
                 p {
                     color:white;
+                }
+
+                .lvl-1 {
+                    margin-left: 10px;
+                }
+
+                .lvl-2 {
+                    margin-left: 20px;
                 }
             `}</style>
         </div>
