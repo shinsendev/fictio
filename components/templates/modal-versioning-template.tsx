@@ -32,8 +32,8 @@ const ModalVersioningTemplate = props => {
           });
 
         //todo: replace with a real modal
-        /* alert("Save ok");
-        props.closeModal();  */
+        alert("Save ok");
+        props.closeModal();
     }
     
     function setNarrativeContent(content) {

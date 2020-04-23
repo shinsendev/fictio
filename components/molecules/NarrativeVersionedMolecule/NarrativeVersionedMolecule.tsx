@@ -3,27 +3,41 @@ import React, { useState } from 'react';
 
 const NarrativeVersionedMolecule = props =>  {
 
-    function handleClick(event){
-        props.save(event.target.value);
+    const [currentNarrativeContent , setCurrentNarrativeContent] = useState(props.narrative.content)
+
+    function handleFragmentClick(event){
+        //  todo: change dynamicly textbox content
+        var currentValue = event.target.value;
+        setCurrentNarrativeContent(currentValue);
+        //props.setNarrativeContent(event.target.value);
+        alert(currentNarrativeContent);
     } 
     
     function saveAndClose() {
-        props.saveAndClose();
+        props.save();
     }
     
+    function setContentByChild(content) {
+        setCurrentNarrativeContent(content);
+    }
+
     function setNarrativeContent(content) {
-        props.setNarrativeContent(content);
+        if(content){
+            props.setNarrativeContent(content);
+            return content;
+        }
+        return props.narrative.content;
     }
 
     return (
         <div className='element'>
             <section>
-                <TextBox content = {props.narrative.content} setContent={setNarrativeContent}/> 
+                <TextBox content = {currentNarrativeContent}  /> 
                 <button onClick={saveAndClose}>save & close</button>
             </section>
             <section>
                 {props.narrative.fragments.map(fragment => 
-                <article className='fragment' key = {fragment.uuid} onClick={() => handleClick(event)}  >
+                <article className='fragment' key = {fragment.uuid} onClick={() => handleFragmentClick(event)}  >
                     <TextBox content = {fragment.content}  />  
                 </article>
                 )}
