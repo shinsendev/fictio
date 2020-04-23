@@ -4,13 +4,23 @@ import React, { useState } from 'react';
 const NarrativeVersionedMolecule = props =>  {
 
     function handleClick(event){
-        props.handleClick(event);
         props.save(event.target.value);
     } 
+    
+    function saveAndClose() {
+        props.saveAndClose();
+    }
+    
+    function setNarrativeContent(content) {
+        props.setNarrativeContent(content);
+    }
 
     return (
         <div className='element'>
-            <h2>Narrative Version Molecule</h2>
+            <section>
+                <TextBox content = {props.narrative.content} setContent={setNarrativeContent}/> 
+                <button onClick={saveAndClose}>save & close</button>
+            </section>
             <section>
                 {props.narrative.fragments.map(fragment => 
                 <article className='fragment' key = {fragment.uuid} onClick={() => handleClick(event)}  >

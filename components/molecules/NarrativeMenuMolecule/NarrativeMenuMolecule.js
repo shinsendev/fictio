@@ -16,7 +16,7 @@ const NarrativeMenu = props => {
             <article>
                 <IconAdd />
             </article>
- 
+
             <article>
                 <IconRestore openModal={openModal} narrativeUuid={props.narrative.uuid} />
             </article>
@@ -33,7 +33,6 @@ const NarrativeMenu = props => {
                     padding: 5px 10px;
                     width: 120px;
                 }
-
                 .hidden {
                     visibility: hidden;
                 }

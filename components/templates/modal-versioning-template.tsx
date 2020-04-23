@@ -8,17 +8,19 @@ import NarrativeVersionedMolecule from '../../components/molecules/NarrativeVers
 
 const ModalVersioningTemplate = props => {
     const [isOpen, setIsOpen] = useState(props.isOpen);
-    const [narrativeState, setNarrativeState] = useState('basic');
+    const [narrativeState, setNarrativeState] = useState(props.narrativeState);
+    const [versionnedState, setVersionnedState] = useState('');
+    const [currentNarrativeContent , setCurrentNarrativeContent] = useState(null);
 
     function closeModal() {
         props.closeModal();
     }
 
-    function save(content) {
+    function save() {
 
         const body = {
             "uuid": props.narrative.uuid,
-            "content": content, //todo : change by content of the content textBox
+            "content": currentNarrativeContent, //todo : change by content of the content textBox
             "type": "narrative",
             "fiction_uuid": "1b7df281-ae2a-40bf-ad6a-ac60409a9ce6"
         };
@@ -27,11 +29,22 @@ const ModalVersioningTemplate = props => {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
-          })
+          });
 
         //todo: replace with a real modal
+        /* alert("Save ok");
+        props.closeModal();  */
+    }
+    
+    function setNarrativeContent(content) {
+        setCurrentNarrativeContent(content);
+    }
+
+    function saveAndClose(){
+        save();
+        //todo: replace with a real modal
         alert("Save ok");
-        props.closeModal(); 
+        props.closeModal();
     }
 
     function getContent(narrative) {
@@ -46,14 +59,13 @@ const ModalVersioningTemplate = props => {
         const useStyles = makeStyles((theme) => ({
             versioning: {
               position: 'absolute',
-              top:'0px',
+              top:'37px',
               left:'15%',
               background: 'black',
               color: 'white',
               width: '70%',
               height:'100%',
               margin: 'auto',
-              border: '2px solid #000',
               boxShadow: theme.shadows[5],
             },
           }));
@@ -70,23 +82,22 @@ const ModalVersioningTemplate = props => {
                 <div className="cross" onClick={closeModal}>
                     <CrossDelete />
                 </div>
-
                 <article>
-                    <div>
-                        <TextBox content = {narrativeState} />
-                        <p>
-                            {content}
-                        </p>
-                        <button onClick={save}>save & close</button>
-                    </div>
                     <div>
                         <NarrativeVersionedMolecule 
                             narrative= {narrative} 
                             handleClick = {handleClick} 
-                            save={save}/>
+                            save = {save}
+                            saveAndClose = {saveAndClose}
+                            setNarrativeContent = {setNarrativeContent}
+                            />
                     </div>
+                        
                 </article>
                 <style global jsx>{`
+                    .narrativebox {
+                        padding:30px 10px 10px 10px;
+                    }
                     .cross {
                         position:absolute;
                         top:20px;
