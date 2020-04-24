@@ -38,6 +38,20 @@ const Narrative = props => {
     function handleClick() {
         props.onClick(props.narrative.uuid);
     }
+    
+//- my modif ------------------------------------
+    function deleteNarrative() {
+        const response = fetch(process.env.edoAPIUrl+'narratives/'+narrativeState.uuid, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+          })
+    }
+
+    function handleDeleteClick() {
+        deleteNarrative();
+        alert('delete' );
+    }
+//--------------------------------------------------
 
     function getClassNames() {
         if (props.isActive == 'true') {
@@ -75,7 +89,7 @@ const Narrative = props => {
                                     <TextBox content = {narrativeState.content} setContent={setContent} onClick={() => handleFragmentClick(event)}/>
                                 </div>
                                 
-                                <div className = 'delete'>
+                                <div className = 'delete' onClick={() => handleDeleteClick()}>
                                     <CrossDelete />
                                 </div>
                                 
