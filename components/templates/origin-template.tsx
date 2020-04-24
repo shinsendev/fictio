@@ -13,7 +13,6 @@ const OriginTemplate = props => {
     }
 
     function openModalOriginTemplate(uuid) {
-        
         // get one narrative to get its fragments
         fetch(process.env.edoAPIUrl + 'narratives/' + uuid + '.json')
         .then(response => {
@@ -48,7 +47,6 @@ const OriginTemplate = props => {
         <div>
             <Header />
             <div className="container">
-
                 <ModalVersioningTemplate 
                     narrative={activeNarrative}
                     isOpen={isOpen}
