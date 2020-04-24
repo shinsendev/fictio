@@ -9,8 +9,6 @@ const NarrativeVersionedMolecule = props =>  {
         //  todo: change dynamicly textbox content
         var currentValue = event.target.value;
         setCurrentNarrativeContent(currentValue);
-        //props.setNarrativeContent(event.target.value);
-        alert(currentNarrativeContent);
     } 
     
     function saveAndClose() {
@@ -19,20 +17,13 @@ const NarrativeVersionedMolecule = props =>  {
     
     function setContentByChild(content) {
         setCurrentNarrativeContent(content);
-    }
-
-    function setNarrativeContent(content) {
-        if(content){
-            props.setNarrativeContent(content);
-            return content;
-        }
-        return props.narrative.content;
+        props.setNarrativeContent(content);
     }
 
     return (
         <div className='element'>
             <section>
-                <TextBox content = {currentNarrativeContent}  /> 
+                <TextBox content = {currentNarrativeContent}  setContent={setContentByChild}/> 
                 <button onClick={saveAndClose}>save & close</button>
             </section>
             <section>
@@ -45,12 +36,28 @@ const NarrativeVersionedMolecule = props =>  {
         
             <style jsx>{`
                 .element {
-                
-                    height: 300px;
+                    width:70%;
+                    margin:auto;
+                    display:flex;
+                    flex-direction:row;   
                 }
-
                 .fragment {
-                    margin-top:10px;
+                    margin-bottom:20px;
+                }
+                section {
+                    margin: 50px 20px 0px 20px;
+                    width : 50%;
+                }
+                button {
+                    display:block;
+                    margin:auto;
+                    margin-top: 20px;
+                    background: black;
+                    color:white;
+                    border:1px solid white;
+                    border-radius: 5px;
+                    text-align:center;
+                    padding:10px 10px 10px 10px;
                 }
             `}</style>
         </div>

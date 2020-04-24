@@ -16,7 +16,7 @@ const Narrative = props => {
         narrativeState.content = content;
         setNarrativeState(narrativeState);  
     }
-
+// Todo:  faire le delete comme un save
     function saveNarrative() {
         const body = {
             "uuid": narrativeState.uuid,
@@ -72,7 +72,7 @@ const Narrative = props => {
                             <div className = 'content'>
                                 
                                 <div className="textBox">
-                                    <TextBox content = {narrativeState.content} setContent={setContent} />
+                                    <TextBox content = {narrativeState.content} setContent={setContent} onClick={() => handleFragmentClick(event)}/>
                                 </div>
                                 
                                 <div className = 'delete'>

@@ -10,6 +10,7 @@ const Origin = props => {
     resetServerContext();
     // set State for column
     const [columnState, setColumnState] = useState('');
+    const [originState, setOriginState] = useState(props.narratives);
 
     /**
      *
@@ -70,6 +71,20 @@ const Origin = props => {
         postReorder(selectedNarrative.uuid);
     }
 
+    function setNarrative(narrative) {
+        updateNarative(narrative);
+    /*     if(narrative.uuid === props.updatedNarrative['uuid']) {
+            alert('bonjour');
+            narrative.content = props.updatedNarrative['content'];
+        }
+         */
+        return narrative;
+    }
+
+    function updateNarative(narrative) {
+        props.updateNarrative(narrative);
+    }
+
     return (
         <div className="element">
             <DragDropContext onDragEnd={handleOnDragEnd} className='dropContext element' >
@@ -80,11 +95,11 @@ const Origin = props => {
                             ref={provided.innerRef}
                             className='narrativesList' 
                         >
-                            {props.narratives.map( (narrative,index) => 
+                            {originState.map( (narrative,index) => 
                                     <NarrativeMolecule 
                                         isActive={`${(narrative.uuid == activeUuid) ? true : false}`} 
                                         key = {narrative.uuid} 
-                                        narrative={narrative} 
+                                        narrative={() => setNarrative(narrative)} 
                                         onClick={() => handleClick(narrative.uuid)}
                                         openModal={openModalOrigin} 
                                         index = {index}

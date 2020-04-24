@@ -20,7 +20,7 @@ const ModalVersioningTemplate = props => {
 
         const body = {
             "uuid": props.narrative.uuid,
-            "content": currentNarrativeContent, //todo : change by content of the content textBox
+            "content": currentNarrativeContent,
             "type": "narrative",
             "fiction_uuid": "1b7df281-ae2a-40bf-ad6a-ac60409a9ce6"
         };
@@ -30,7 +30,8 @@ const ModalVersioningTemplate = props => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
           });
-
+        
+        props.refreshNarrative(props.narrative.uuid, currentNarrativeContent);
         //todo: replace with a real modal
         alert("Save ok");
         props.closeModal();
@@ -38,13 +39,6 @@ const ModalVersioningTemplate = props => {
     
     function setNarrativeContent(content) {
         setCurrentNarrativeContent(content);
-    }
-
-    function saveAndClose(){
-        save();
-        //todo: replace with a real modal
-        alert("Save ok");
-        props.closeModal();
     }
 
     function getContent(narrative) {
@@ -60,12 +54,10 @@ const ModalVersioningTemplate = props => {
             versioning: {
               position: 'absolute',
               top:'37px',
-              left:'15%',
               background: 'black',
               color: 'white',
-              width: '70%',
+              width: '100%',
               height:'100%',
-              margin: 'auto',
               boxShadow: theme.shadows[5],
             },
           }));
@@ -73,7 +65,7 @@ const ModalVersioningTemplate = props => {
         const classes = useStyles();
 
        function handleClick(event){
-            setNarrativeState(event.target.value);        
+            setNarrativeState(event.target.value);       
         }
 
         return (
@@ -88,60 +80,20 @@ const ModalVersioningTemplate = props => {
                             narrative= {narrative} 
                             handleClick = {handleClick} 
                             save = {save}
-                            saveAndClose = {saveAndClose}
                             setNarrativeContent = {setNarrativeContent}
                             />
                     </div>
                         
                 </article>
                 <style global jsx>{`
-                    .narrativebox {
-                        padding:30px 10px 10px 10px;
-                    }
                     .cross {
                         position:absolute;
                         top:20px;
-                        right:20px;
+                        right:15%;
                     }
 
                     .cross:hover {
                         cursor:pointer;
-                    }
-
-                    article {
-                        width:100%;
-                        display:flex;
-                        flex-direction:row;
-                        justify-content:center;
-                        padding-top:20px;
-                    }
-
-                    div {
-                        margin: 0px 10px 0px 10px ;
-                        padding:0 5% 0 5% 0 5% 0 5%;
-                        flex-direction:column;
-                    }
-
-                    p {
-                        padding: 10px 20px;
-                        background: #262626;
-                        color: white;
-                        max-width: 650px;
-                        border-radius: 5px;
-                        min-height: 45px;
-                        /* max-height: 150px; */
-                        margin-bottom : 10px;
-                    }
-
-                    button {
-                        display:block;
-                        margin:auto;
-                        background: black;
-                        color:white;
-                        border:1px solid white;
-                        border-radius: 5px;
-                        text-align:center;
-                        padding:10px 10px 10px 10px;
                     }
                 `}</style>
         </div>
