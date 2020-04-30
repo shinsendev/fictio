@@ -11,10 +11,14 @@ const NarrativeMenu = props => {
         props.saveNarrative();
     }
 
+    function createNarrative() {
+        props.createNarrative();
+    }
+
     return (
         <article className='element'>
             <article>
-                <IconAdd />
+                <IconAdd onClick={createNarrative} createNarrative={createNarrative}/>
             </article>
  
             <article>
