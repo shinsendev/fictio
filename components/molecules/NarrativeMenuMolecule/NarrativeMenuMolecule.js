@@ -22,7 +22,7 @@ const NarrativeMenu = props => {
         if (narrative.lvl !== 0) {
             return (
                 <article>
-                <IconAdd onClick={createNarrative} createNarrative={createNarrative}/>
+                    <IconAdd onClick={createNarrative} createNarrative={createNarrative}/>
                 </article>
             )
         }
@@ -38,8 +38,8 @@ const NarrativeMenu = props => {
             </article>
 
             <article>
-                    <IconSave narrative = {props.narrative} saveNarrative={saveNarrative} />
-                </article>
+                <IconSave narrative = {props.narrative} saveNarrative={saveNarrative} />
+            </article>
  
             <style jsx>{`
                 .element {

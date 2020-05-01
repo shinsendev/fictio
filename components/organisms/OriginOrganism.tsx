@@ -98,9 +98,6 @@ const Origin = props => {
             'parent_uuid': parentUuid.uuid,
             'root': originState.uuid,
             'type': 'narrative',
-            "lvl": 2,
-            "lft": 9,
-            "rgt": 2
         }
 
         parent.children.push(newNarrative);
