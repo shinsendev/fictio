@@ -57,28 +57,28 @@ const Origin = props => {
 
     function searchNarrative(narrative, uuid) {
         var result = null;
-
         // if narrative uuid is the origin uuid we return it
         if (narrative.uuid === uuid) {
             return narrative;
         }
+        
         else {
             if (narrative.children.length > 0) {
-                narrative.children.map(child => {
-                    if (child.uuid === uuid) {
-                        return child;
+                for(let i=0; i < narrative.children.length; i++) {
+                    if (narrative.children[i].uuid === uuid) {
+                        return narrative.children[i];
                     }
                     else {
                         // it's recursive
-                        if(result = searchNarrative(child, uuid)){
+                        if(result = searchNarrative(narrative.children[i], uuid)){
                             return result;
                         }
                     }
-                })
+                }
+
+                return result;
             }
         }
-
-        return result;
     }
 
     /**
@@ -86,23 +86,17 @@ const Origin = props => {
      * @param parentUuid 
      */
     function createNarrative(parentUuid) {
-        var parent = null;
 
         // refind the parent narrative with the corresponding uuid
-        parent = searchNarrative(originState, parentUuid);
-
-        console.log(parent);
+        const parent = searchNarrative(originState, parentUuid);
         
         // // generate new uuid and create a new child for this parent
-        // const children = parent.children.push({'uuid': uuidv4(), 'content': ''});
+        parent.children.push({'uuid': uuidv4(), 'content': ''});
 
-        // todo = add correct position in the parent
-        // todo = debug 
-        // todo = when it's top level, disable add narrative option
-
-        // setOriginState(prevState => {
-        //     return {...prevState, children: children}
-        // });
+        // force the rerender
+        setOriginState(prevState => {
+            return {...prevState, originState}
+        });
     }
 
     /**
@@ -138,7 +132,7 @@ const Origin = props => {
     function displayChildren(children) {
         var response = [];
         
-        if(children.length > 0) {
+        if(children && children.length > 0) {
             children.map( (child, index) => {
                 response.push(displayNarrative(child, index))
             })
