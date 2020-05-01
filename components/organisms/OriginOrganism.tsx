@@ -91,7 +91,19 @@ const Origin = props => {
         const parent = searchNarrative(originState, parentUuid);
         
         // // generate new uuid and create a new child for this parent
-        parent.children.push({'uuid': uuidv4(), 'content': ''});
+        const newNarrative = {
+            'uuid': uuidv4(),
+            'content': null,
+            'fiction_uuid': originState.fiction_uuid,
+            'parent_uuid': parentUuid.uuid,
+            'root': originState.uuid,
+            'type': 'narrative',
+            "lvl": 2,
+            "lft": 9,
+            "rgt": 2
+        }
+
+        parent.children.push(newNarrative);
 
         // force the rerender
         setOriginState(prevState => {
