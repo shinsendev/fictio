@@ -17,6 +17,10 @@ const Narrative = props => {
         setNarrativeState(narrativeState);  
     }
 
+    function createNarrative() {
+        props.createNarrative(narrativeState.parent_uuid);
+    }
+
     function saveNarrative() {
         const body = {
             "uuid": narrativeState.uuid,
@@ -66,6 +70,7 @@ const Narrative = props => {
                                 narrative={narrativeState} 
                                 saveNarrative={saveNarrative} 
                                 setContent={setContent}
+                                createNarrative={createNarrative}
                             />
                         </aside>
 

@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { resetServerContext } from 'react-beautiful-dnd';
 import styles from './OriginOrganism.module.css';
+import { v4 as uuidv4 } from 'uuid';
 
 const Origin = props => {
     // Configuration for drag and drop
@@ -14,6 +15,7 @@ const Origin = props => {
     const [columnState, setColumnState] = useState('');
     const [activeUuid, setActiveUuid] = useState('');
     const narrativeList = new NarrativeList(props.narratives);
+    const [originState, setOriginState] = useState(props.narratives[0])
 
     /**
      *
@@ -53,6 +55,59 @@ const Origin = props => {
         setActiveUuid(narrativeUuid);
     }
 
+    function searchNarrative(narrative, uuid) {
+        var result = null;
+        // if narrative uuid is the origin uuid we return it
+        if (narrative.uuid === uuid) {
+            return narrative;
+        }
+        
+        else {
+            if (narrative.children.length > 0) {
+                for(let i=0; i < narrative.children.length; i++) {
+                    if (narrative.children[i].uuid === uuid) {
+                        return narrative.children[i];
+                    }
+                    else {
+                        // it's recursive
+                        if(result = searchNarrative(narrative.children[i], uuid)){
+                            return result;
+                        }
+                    }
+                }
+
+                return result;
+            }
+        }
+    }
+
+    /**
+     * @description we add a new empty narrative to the origin list at the same level than the narrative where we have pressed the add button
+     * @param parentUuid 
+     */
+    function createNarrative(parentUuid) {
+
+        // refind the parent narrative with the corresponding uuid
+        const parent = searchNarrative(originState, parentUuid);
+        
+        // // generate new uuid and create a new child for this parent
+        const newNarrative = {
+            'uuid': uuidv4(),
+            'content': null,
+            'fiction_uuid': originState.fiction_uuid,
+            'parent_uuid': parentUuid.uuid,
+            'root': originState.uuid,
+            'type': 'narrative',
+        }
+
+        parent.children.push(newNarrative);
+
+        // force the rerender
+        setOriginState(prevState => {
+            return {...prevState, originState}
+        });
+    }
+
     /**
      * 
      * @param result 
@@ -86,7 +141,7 @@ const Origin = props => {
     function displayChildren(children) {
         var response = [];
         
-        if(children) {
+        if(children && children.length > 0) {
             children.map( (child, index) => {
                 response.push(displayNarrative(child, index))
             })
@@ -108,13 +163,13 @@ const Origin = props => {
             <article className={styles.lvl} key={narrative.uuid}>
                 <NarrativeMolecule 
                     isActive={`${(narrative.uuid === activeUuid) ? true : false}`}
-                    // isActive={isActive}
                     key = {narrative.uuid} 
                     narrative={narrative} 
                     onClick={() => handleClick(narrative.uuid)}
                     openModal={openModalOrigin} 
                     index = {index} //todo : to check
                     draggableId = {narrative.uuid}
+                    createNarrative={createNarrative}
                 />
                 {displayChildren(narrative.children)}
             </article>
@@ -133,7 +188,7 @@ const Origin = props => {
                             ref={provided.innerRef}
                             className='narrativesList' 
                         >
-                            {displayNarrative(props.narratives[0])}
+                            {displayNarrative(originState)}
                             {provided.placeholder}
                         </div>
                     )}
