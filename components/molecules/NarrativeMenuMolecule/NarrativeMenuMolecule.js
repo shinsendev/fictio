@@ -15,19 +15,31 @@ const NarrativeMenu = props => {
         props.createNarrative();
     }
 
+    /**
+     * @description we don't return the icon if it is top level narrative
+     */
+    function displayAddNarrative(narrative) {
+        if (narrative.lvl !== 0) {
+            return (
+                <article>
+                <IconAdd onClick={createNarrative} createNarrative={createNarrative}/>
+                </article>
+            )
+        }
+    }
+
     return (
         <article className='element'>
-            <article>
-                <IconAdd onClick={createNarrative} createNarrative={createNarrative}/>
-            </article>
- 
+
+            {displayAddNarrative(props.narrative)}
+
             <article>
                 <IconRestore openModal={openModal} narrativeUuid={props.narrative.uuid} />
             </article>
 
             <article>
-                <IconSave narrative = {props.narrative} saveNarrative={saveNarrative} />
-            </article>
+                    <IconSave narrative = {props.narrative} saveNarrative={saveNarrative} />
+                </article>
  
             <style jsx>{`
                 .element {
