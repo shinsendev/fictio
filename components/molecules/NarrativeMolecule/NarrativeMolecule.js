@@ -47,6 +47,10 @@ const Narrative = props => {
         props.handleDelete(narrativeState);
     }
 
+    function handleDisplay() {
+        props.hideNarrativeChildren(narrativeState);
+    }
+
     function getClassNames() {
         if (props.isActive == 'true') {
             return "";
@@ -84,11 +88,11 @@ const Narrative = props => {
                                     <TextBox content = {narrativeState.content} setContent={setContent} onClick={() => handleFragmentClick(event)}/>
                                 </div>
                                 
-                                <div className = 'delete' onClick={() => handleDelete()}>
+                                <div className = 'delete' onClick={handleDelete}>
                                     <CrossDelete />
                                 </div>
                                 
-                                <div className = 'display'>
+                                <div className = 'display' onClick={handleDisplay}>
                                     <IconDisplay />
                                 </div>
                             </div>

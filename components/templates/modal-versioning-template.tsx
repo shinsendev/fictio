@@ -1,15 +1,11 @@
 import CrossDelete from'../atoms/CrossDelete/CrossDelete';
-import Origin from '../organisms/OriginOrganism';
 import Modal from '@material-ui/core/Modal';
 import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TextBox from '../../components/atoms/TextBox/TextBox';
 import NarrativeVersionedMolecule from '../../components/molecules/NarrativeVersionedMolecule/NarrativeVersionedMolecule';
 
 const ModalVersioningTemplate = props => {
-    const [isOpen, setIsOpen] = useState(props.isOpen);
     const [narrativeState, setNarrativeState] = useState(props.narrativeState);
-    const [versionnedState, setVersionnedState] = useState('');
     const [currentNarrativeContent , setCurrentNarrativeContent] = useState(null);
 
     function closeModal() {
