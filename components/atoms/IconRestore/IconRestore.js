@@ -3,7 +3,7 @@ import { Restore } from '@material-ui/icons';
 
 const IconRestore = props => {
 
-    function openModal() {  
+    function openModal() { 
         props.openModal();
     }
 

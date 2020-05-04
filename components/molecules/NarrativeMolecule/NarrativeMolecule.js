@@ -42,6 +42,10 @@ const Narrative = props => {
     function handleClick() {
         props.onClick(props.narrative.uuid);
     }
+    
+    function handleDelete() {
+        props.handleDelete(narrativeState);
+    }
 
     function getClassNames() {
         if (props.isActive == 'true') {
@@ -77,10 +81,10 @@ const Narrative = props => {
                             <div className = 'content'>
                                 
                                 <div className="textBox">
-                                    <TextBox content = {narrativeState.content} setContent={setContent} />
+                                    <TextBox content = {narrativeState.content} setContent={setContent} onClick={() => handleFragmentClick(event)}/>
                                 </div>
                                 
-                                <div className = 'delete'>
+                                <div className = 'delete' onClick={() => handleDelete()}>
                                     <CrossDelete />
                                 </div>
                                 

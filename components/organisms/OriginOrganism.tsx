@@ -108,6 +108,42 @@ const Origin = props => {
         });
     }
 
+    function removeNarrative(narrative) {
+        const parent = searchNarrative(originState, narrative.parent_uuid);
+
+        parent.children.map((child, index) => {
+            if (child.uuid === narrative.uuid) {
+                parent.children.splice(index, 1);
+            }
+        })
+
+        setOriginState(prevState => {
+            return {...prevState, originState}
+        });
+    }
+
+    function deleteNarrative(narrative) {
+        fetch(process.env.edoAPIUrl+'narratives/'+narrative.uuid, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        })
+        .then(response => {
+            if (response.ok) {
+                removeNarrative(narrative);
+                //todo: replace with a real modal
+                alert('Narrative has been deleted' );
+            }
+            else {
+                throw new Error('Request failed!');
+            }
+        })
+        .catch((networkError) => {
+            alert('Error : narrative has NOT been deleted!');
+            console.log('Error when deleting narrative : ' + networkError.message);
+          });
+        ;
+    }
+
     /**
      * 
      * @param result 
@@ -170,6 +206,7 @@ const Origin = props => {
                     index = {index} //todo : to check
                     draggableId = {narrative.uuid}
                     createNarrative={createNarrative}
+                    handleDelete={deleteNarrative}
                 />
                 {displayChildren(narrative.children)}
             </article>
