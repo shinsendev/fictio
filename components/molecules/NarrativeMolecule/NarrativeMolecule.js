@@ -48,11 +48,12 @@ const Narrative = props => {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
           })
+        alert('Narrative has been deleted!' );
     }
 
+    //todo: useless?
     function handleDeleteClick() {
         deleteNarrative();
-        alert('Narrative has been deleted!' );
     }
 
 

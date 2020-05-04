@@ -5,8 +5,8 @@ const NarrativeVersionedMolecule = props =>  {
 
     const [currentNarrativeContent , setCurrentNarrativeContent] = useState(props.narrative.content)
 
-    function handleFragmentClick(event){
-        //  todo: change dynamicly textbox content
+    function handleFragmentClick(event) {
+        //  todo: change dynamically textbox content
         var currentValue = event.target.value;
         setCurrentNarrativeContent(currentValue);
     } 
