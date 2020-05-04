@@ -33,8 +33,7 @@ const TextBox = props => {
                     value = {contentState}
                     aria-label="empty textarea"
                     placeholder="You can write here"
-                    className={clsx(className)}
-                />
+                    className={clsx(className)}/> 
             <style jsx>{`
                 article {
                     padding: 10px 20px;

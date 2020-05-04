@@ -6,6 +6,7 @@ import ModalVersioningTemplate from './modal-versioning-template';
 const OriginTemplate = props => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeNarrative, setActiveNarrative] = useState(null);
+    const [updatedNarrative, setupdatedNarrative] = useState([]);
 
     function closeModal() {
         setIsOpen(false);
@@ -31,6 +32,16 @@ const OriginTemplate = props => {
           });
         ;
     }
+    
+    function refreshUpdatedNarrative(uuid:string, content:string) {
+        setupdatedNarrative([uuid, content]);
+    }
+    
+    function updateNarrative(narrative) {
+        if(updatedNarrative['uuid'] === narrative.uuid) {   
+            console.log('oui  '+narrative.content);
+        }
+    }
  
     return (
         <div>
@@ -40,10 +51,12 @@ const OriginTemplate = props => {
                     narrative={activeNarrative}
                     isOpen={isOpen}
                     closeModal={closeModal}
+                    refreshNarrative= {refreshUpdatedNarrative}
                 />
                 <Origin
                     narratives={props.narratives} 
                     openModal={openModalOriginTemplate}
+                    updateNarrative={updateNarrative}
                 />
             </div>
             <style jsx>{`
