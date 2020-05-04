@@ -1,9 +1,19 @@
-import { ArrowDropDown } from '@material-ui/icons';
+import { ArrowDropDown, ArrowDropUp } from '@material-ui/icons';
 
 const IconDisplay = props => {
+    function displayArrow(props) {
+        console.log(props.arrow);
+        if (props.arrow === 'up') {
+            return <ArrowDropUp />
+        }
+        else {
+            return <ArrowDropDown />
+        }
+    }
+
     return (
         <span className='element'>
-            <ArrowDropDown />
+            {displayArrow(props)}
             <style jsx>{`
                 .element {
                     color: white;

@@ -7,6 +7,7 @@ import { Draggable } from 'react-beautiful-dnd';
 
 const Narrative = props => {
     const [narrativeState, setNarrativeState] = useState(props.narrative);
+    const [displayArrowState, setDisplayArrowState] = useState('down');
 
     function openModalNarrative() {
         props.openModal(narrativeState.uuid);
@@ -48,6 +49,13 @@ const Narrative = props => {
     }
 
     function handleDisplay() {
+        if (displayArrowState === 'down') {
+            setDisplayArrowState('up');
+        }
+        else {
+            setDisplayArrowState('down');
+        }
+
         props.hideNarrativeChildren(narrativeState);
     }
 
@@ -60,6 +68,12 @@ const Narrative = props => {
         }
     }
     
+    function displayDisplayIcon() {
+        if (narrativeState.children && narrativeState.children.length > 0) {
+            return <IconDisplay arrow={displayArrowState} />
+        }
+    }
+
     return (
         <div>  
             <Draggable key={props.narrative.uuid} draggableId={props.draggableId} index={props.index}>
@@ -93,7 +107,7 @@ const Narrative = props => {
                                 </div>
                                 
                                 <div className = 'display' onClick={handleDisplay}>
-                                    <IconDisplay />
+                                    {displayDisplayIcon()}
                                 </div>
                             </div>
                     </article>
