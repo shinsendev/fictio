@@ -16,7 +16,11 @@ const Narrative = props => {
         narrativeState.content = content;
         setNarrativeState(narrativeState);  
     }
-// Todo:  faire le delete comme un save
+
+    function createNarrative() {
+        props.createNarrative(narrativeState.parent_uuid);
+    }
+
     function saveNarrative() {
         const body = {
             "uuid": narrativeState.uuid,
@@ -39,19 +43,9 @@ const Narrative = props => {
         props.onClick(props.narrative.uuid);
     }
     
-//- my modif ------------------------------------
-    function deleteNarrative() {
-        const response = fetch(process.env.edoAPIUrl+'narratives/'+narrativeState.uuid, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
-          })
+    function handleDelete() {
+        props.handleDelete(narrativeState);
     }
-
-    function handleDeleteClick() {
-        deleteNarrative();
-        alert('delete' );
-    }
-//--------------------------------------------------
 
     function getClassNames() {
         if (props.isActive == 'true') {
@@ -80,6 +74,7 @@ const Narrative = props => {
                                 narrative={narrativeState} 
                                 saveNarrative={saveNarrative} 
                                 setContent={setContent}
+                                createNarrative={createNarrative}
                             />
                         </aside>
 
@@ -89,7 +84,7 @@ const Narrative = props => {
                                     <TextBox content = {narrativeState.content} setContent={setContent} onClick={() => handleFragmentClick(event)}/>
                                 </div>
                                 
-                                <div className = 'delete' onClick={() => handleDeleteClick()}>
+                                <div className = 'delete' onClick={() => handleDelete()}>
                                     <CrossDelete />
                                 </div>
                                 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,8 +15,11 @@ const TextBox = props => {
           maxWidth: '620px' 
         },
       });
+    
+    const [contentState, setContentState] = useState(props.content);
 
     function handleChange(event) {
+        setContentState(event.target.value);
         props.setContent(event.target.value);
     }
 
@@ -27,7 +30,7 @@ const TextBox = props => {
             <article className='textBox'>
                 <TextareaAutosize
                     onChange={handleChange}
-                    value={props.content}
+                    value = {contentState}
                     aria-label="empty textarea"
                     placeholder="You can write here"
                     className={clsx(className)}/> 
