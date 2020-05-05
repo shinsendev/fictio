@@ -2,7 +2,7 @@ import CrossDelete from'../atoms/CrossDelete/CrossDelete';
 import Modal from '@material-ui/core/Modal';
 import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import NarrativeVersionedMolecule from '../../components/molecules/NarrativeVersionedMolecule/NarrativeVersionedMolecule';
+import NarrativeVersionedMolecule from '../molecules/NarrativeVersionedMolecule/NarrativeVersionedMolecule';
 
 const ModalVersioningTemplate = props => {
     const [narrativeState, setNarrativeState] = useState(props.narrativeState);
