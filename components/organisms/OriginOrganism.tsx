@@ -196,6 +196,14 @@ const Origin = props => {
             }
         })
 
+        // manage arrow for displaying children
+        if (parent.children[0].is_hidden) {
+            parent.display_arrow = 'up';
+        }
+        else {
+            parent.display_arrow = 'down';
+        }
+
         setOriginState(prevState => {
             return {...prevState, originState}
         });

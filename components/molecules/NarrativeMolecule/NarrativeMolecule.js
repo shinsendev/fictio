@@ -70,7 +70,12 @@ const Narrative = props => {
     
     function displayDisplayIcon() {
         if (narrativeState.children && narrativeState.children.length > 0) {
-            return <IconDisplay arrow={displayArrowState} />
+            if (narrativeState.display_arrow === 'up') {
+                return <IconDisplay arrow={narrativeState.display_arrow} />
+            }
+            else {
+                return <IconDisplay arrow='down' />
+            }
         }
     }
 
