@@ -1,5 +1,6 @@
-import IconTrash from "../atoms/IconTrash/IconTrash";
-import TextBox from "../atoms/TextBox/TextBox";
+import IconTrash from "../../atoms/IconTrash/IconTrash";
+import TextBox from "../../atoms/TextBox/TextBox";
+import styles from './FictionOrganism.module.css';
 
 const FictionOrganism = props => {
 
@@ -19,7 +20,7 @@ const FictionOrganism = props => {
             // we only keep the origins
             if (narrative.lvl === 0) {
                 content.push(
-                    <article className='fragment' key = {narrative.uuid}  >
+                    <article className={styles.fragment} key = {narrative.uuid}  >
                         <p>{narrative.content}</p>
                         <IconTrash />
                     </article>
@@ -33,9 +34,9 @@ const FictionOrganism = props => {
     return(
             <div className='element'>
                 <aside>
-                    <h2>{props.fiction.title} </h2>
+                    <h2 className={styles.fictionTitle}>{props.fiction.title} </h2>
                     <TextBox content={getContent} />
-                    <button>Create Content</button>
+                    <button className={styles.button}>Create Content</button>
                 </aside>
                 <section>
                     {getOrigins(props.fiction.narratives)}
@@ -49,41 +50,29 @@ const FictionOrganism = props => {
                         width:70%;
                         margin:auto;
                         display:flex;
-                        flex-direction:row;   
-                    }
-                    .fragment {
-                        margin-bottom:10px;
-                        display:flex;
                         flex-direction:row;
+                        min-height: 800px;
                     }
+                    
                     aside{
                         margin: 50px 20px 0px 20px;
                         width : 30%;
                     }
+                    
                     section {
                         margin: 50px 20px 0px 20px;
                         width : 70%;
                         s
                     }
-                    button {
-                        display:block;
-                        margin:auto;
-                        margin-top: 20px;
-                        background: black;
-                        color:white;
-                        border:1px solid white;
-                        border-radius: 5px;
-                        text-align:center;
-                        padding:10px 10px 10px 10px;
-                        width:100%;
-                    }
-              
-                    h2,p,a{
+
+                    h2, p, a {
                         color:white;
                     }
+
                     .deleteFiction{
                        text-align:center;
                     }
+                    
                     p{
                         background-color:#262626;
                         border-radius:5px;

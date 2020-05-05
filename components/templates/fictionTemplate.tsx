@@ -1,5 +1,5 @@
 import Header from '../organisms/Header';
-import FictionOrganism from '../organisms/FictionOrganism';
+import FictionOrganism from '../organisms/Fiction/FictionOrganism';
 
 const FictionTemplate = props => {
     

@@ -1,4 +1,4 @@
-import FictionTemplate from '../../components/templates/fictionTemplate';
+import FictionTemplate from '../../components/templates/FictionTemplate';
 import fetch from 'isomorphic-unfetch';
 
 const Fiction = props => {
