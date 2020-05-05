@@ -1,22 +1,44 @@
-//import FictionTemplate from '../templates/fiction-template';
-// import IconTrash from '../atoms/IconTrash/IconTrash';
+import IconTrash from "../atoms/IconTrash/IconTrash";
+import TextBox from "../atoms/TextBox/TextBox";
 
 const FictionOrganism = props => {
-    const lorem ='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
+
+    function getContent() {
+        if (props.fiction.content) {
+            return props.fiction.content;
+        }
+        else {
+            return 'Write a description';
+        }
+    }
+
+    function getOrigins(narratives) {
+        const content = [];
+
+        narratives.map(narrative => {
+            // we only keep the origins
+            if (narrative.lvl === 0) {
+                content.push(
+                    <article className='fragment' key = {narrative.uuid}  >
+                        <p>{narrative.content}</p>
+                        <IconTrash />
+                    </article>
+                )
+            }
+        })
+
+        return content;
+    }
+
     return(
             <div className='element'>
                 <aside>
-                    <h2>{props.fictionsData.title} </h2>
-                    <p>{lorem}</p> 
+                    <h2>{props.fiction.title} </h2>
+                    <TextBox content={getContent} />
                     <button>Create Content</button>
                 </aside>
                 <section>
-                {props.fictionsData.narratives.map((narrative)=> 
-                    <article className='fragment' key = {narrative.uuid}  >
-                        <p>{narrative.content}</p>
-                        {/* <IconTrash /> */}
-                    </article>
-                )}  
+                    {getOrigins(props.fiction.narratives)}
                 <div className="deleteFiction">
                     <a href="#">Delete Fiction</a>
                 </div>      

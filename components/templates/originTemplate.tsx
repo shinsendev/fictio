@@ -1,7 +1,7 @@
 import Header from '../organisms/Header';
 import Origin from '../organisms/OriginOrganism';
 import React, { useState, Fragment } from 'react';
-import ModalVersioningTemplate from './modal-versioning-template';
+import ModalVersioningTemplate from './modalVersioningTemplate';
 
 const OriginTemplate = props => {
     const [isOpen, setIsOpen] = useState(false);

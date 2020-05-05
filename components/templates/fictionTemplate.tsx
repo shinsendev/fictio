@@ -6,7 +6,7 @@ const FictionTemplate = props => {
     return (
         <div className='container'>
             <Header />
-            <FictionOrganism fictionsData={props.fictionsData}/>
+            <FictionOrganism fiction={props.fiction}/>
             <style jsx>{`
                 .container {
                     background: black;

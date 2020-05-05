@@ -1,4 +1,4 @@
-import OriginTemplate from '../../components/templates/origin-template';
+import OriginTemplate from '../../components/templates/originTemplate';
 import fetch from 'isomorphic-unfetch';
 import NarrativesList from '../../components/model/NarrativesList';
 import React from 'react';
