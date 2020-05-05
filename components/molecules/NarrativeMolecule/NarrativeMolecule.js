@@ -47,6 +47,10 @@ const Narrative = props => {
         props.handleDelete(narrativeState);
     }
 
+    function handleDisplay() {
+        props.hideNarrativeChildren(narrativeState);
+    }
+
     function getClassNames() {
         if (props.isActive == 'true') {
             return "";
@@ -56,6 +60,17 @@ const Narrative = props => {
         }
     }
     
+    function displayDisplayIcon() {
+        if (narrativeState.children && narrativeState.children.length > 0) {
+            if (narrativeState.display_arrow === 'up') {
+                return <IconDisplay arrow={narrativeState.display_arrow} />
+            }
+            else {
+                return <IconDisplay arrow='down' />
+            }
+        }
+    }
+
     return (
         <div>  
             <Draggable key={props.narrative.uuid} draggableId={props.draggableId} index={props.index}>
@@ -84,12 +99,12 @@ const Narrative = props => {
                                     <TextBox content = {narrativeState.content} setContent={setContent} onClick={() => handleFragmentClick(event)}/>
                                 </div>
                                 
-                                <div className = 'delete' onClick={() => handleDelete()}>
+                                <div className = 'delete' onClick={handleDelete}>
                                     <CrossDelete />
                                 </div>
                                 
-                                <div className = 'display'>
-                                    <IconDisplay />
+                                <div className = 'display' onClick={handleDisplay}>
+                                    {displayDisplayIcon()}
                                 </div>
                             </div>
                     </article>

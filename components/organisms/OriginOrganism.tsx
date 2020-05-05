@@ -186,32 +186,57 @@ const Origin = props => {
         return response;
     }
     
+    function hideNarrativeChildren(parent) {
+        parent.children.map(child => {
+            if (child.is_hidden) {
+                child.is_hidden = false;
+            }
+            else {
+                child.is_hidden = true;
+            }
+        })
+
+        // manage arrow for displaying children
+        if (parent.children[0].is_hidden) {
+            parent.display_arrow = 'up';
+        }
+        else {
+            parent.display_arrow = 'down';
+        }
+
+        setOriginState(prevState => {
+            return {...prevState, originState}
+        });
+    }
+
     /**
      * 
      * @param narrative 
      * @param index 
      */
     function displayNarrative(narrative, index = 0) {
-
         var response = [];
 
-        response.push(
-            <article className={styles.lvl} key={narrative.uuid}>
-                <NarrativeMolecule 
-                    isActive={`${(narrative.uuid === activeUuid) ? true : false}`}
-                    key = {narrative.uuid} 
-                    narrative={narrative} 
-                    onClick={() => handleClick(narrative.uuid)}
-                    openModal={openModalOrigin} 
-                    index = {index} //todo : to check
-                    draggableId = {narrative.uuid}
-                    createNarrative={createNarrative}
-                    handleDelete={deleteNarrative}
-                />
-                {displayChildren(narrative.children)}
-            </article>
-        );
-        
+        if (!narrative.is_hidden) {
+            response.push(
+                <article className={styles.lvl} key={narrative.uuid}>
+                    <NarrativeMolecule
+                        isActive={`${(narrative.uuid === activeUuid) ? true : false}`}
+                        key = {narrative.uuid}
+                        narrative={narrative}
+                        onClick={() => handleClick(narrative.uuid)}
+                        openModal={openModalOrigin}
+                        index = {index} //todo : to check
+                        draggableId = {narrative.uuid}
+                        createNarrative={createNarrative}
+                        handleDelete={deleteNarrative}
+                        hideNarrativeChildren={hideNarrativeChildren}
+                    />
+                    {displayChildren(narrative.children)}
+                </article>
+            );
+        }
+
         return response;
     }
 
