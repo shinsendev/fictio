@@ -1,6 +1,7 @@
 import IconTrash from "../../atoms/IconTrash/IconTrash";
 import TextBox from "../../atoms/TextBox/TextBox";
 import styles from './FictionOrganism.module.css';
+import Link from 'next/link';
 
 const FictionOrganism = props => {
 
@@ -20,10 +21,12 @@ const FictionOrganism = props => {
             // we only keep the origins
             if (narrative.lvl === 0) {
                 content.push(
-                    <article className={styles.fragment} key = {narrative.uuid}  >
-                        <p>{narrative.content}</p>
-                        <IconTrash />
-                    </article>
+                    <Link href={'/origins/'+narrative.uuid}>
+                        <article className={styles.fragment} key = {narrative.uuid}  >
+                            <p>{narrative.content}</p>
+                            <IconTrash />
+                        </article>
+                    </Link>
                 )
             }
         })
