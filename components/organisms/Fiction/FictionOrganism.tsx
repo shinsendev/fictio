@@ -6,11 +6,11 @@ import Link from 'next/link';
 const FictionOrganism = props => {
 
     function getContent() {
-        if (props.fiction.content) {
+        if (props.fiction.content.length) {
             return props.fiction.content;
         }
         else {
-            return 'Write a description';
+            return 'No description...';
         }
     }
 
@@ -21,12 +21,12 @@ const FictionOrganism = props => {
             // we only keep the origins
             if (narrative.lvl === 0) {
                 content.push(
-                    <Link href={'/origins/'+narrative.uuid}>
                         <article className={styles.fragment} key = {narrative.uuid}  >
-                            <p>{narrative.content}</p>
-                            <IconTrash />
+                            <Link href={'/origins/'+narrative.uuid}>
+                                <p className={styles.link}>{narrative.content}</p>
+                            </Link>
+                            <div className={styles.deleteIcon}><IconTrash /></div>
                         </article>
-                    </Link>
                 )
             }
         })
@@ -37,15 +37,18 @@ const FictionOrganism = props => {
     return(
             <div className='element'>
                 <aside>
-                    <h2 className={styles.fictionTitle}>{props.fiction.title} </h2>
-                    <TextBox content={getContent} />
-                    <button className={styles.button}>Create Content</button>
+                    <h2 className={styles.fictionTitle}>{props.fiction.title}</h2>
+                    <div className={styles.fictionDescription}>{getContent()}</div>
+                    <button className={styles.button}>Create a new text</button>
                 </aside>
                 <section>
-                    {getOrigins(props.fiction.narratives)}
-                <div className="deleteFiction">
-                    <a href="#">Delete Fiction</a>
-                </div>      
+                    <article className={styles.textBox}>
+                        {getOrigins(props.fiction.narratives)}
+                    </article>
+
+                    <div className={styles.deleteFiction}>
+                        <a href="#">Delete Fiction</a>
+                    </div>
                 </section>
             
                 <style jsx>{`
@@ -55,8 +58,9 @@ const FictionOrganism = props => {
                         display:flex;
                         flex-direction:row;
                         min-height: 800px;
+                        font-family: Roboto;
                     }
-                    
+
                     aside{
                         margin: 50px 20px 0px 20px;
                         width : 30%;
@@ -68,12 +72,13 @@ const FictionOrganism = props => {
                         s
                     }
 
-                    h2, p, a {
-                        color:white;
+                    h2 {
+                        margin-top: 0px;
+                        margin-bottom: 3px;
                     }
 
-                    .deleteFiction{
-                       text-align:center;
+                    h2, p, a {
+                        color:white;
                     }
                     
                     p{
