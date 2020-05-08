@@ -43,7 +43,7 @@ const FictionOrganism = props => {
                 </aside>
                 <section>
                     <article className={styles.textBox}>
-                        {getOrigins(props.fiction.narratives)}
+                        {getOrigins(props.fiction.fragments)}
                     </article>
 
                     <div className={styles.deleteFiction}>
