@@ -27,9 +27,9 @@ const NarrativeVersionedMolecule = props =>  {
                 <button onClick={saveAndClose}>save & close</button>
             </section>
             <section>
-                {props.narrative.fragments.map(fragment => 
-                <article className='fragment' key = {fragment.uuid} onClick={() => handleFragmentClick(event)}  >
-                    <TextBox content = {fragment.content}  />  
+                {props.narrative.versions.map(version => 
+                <article className='version' key = {version.uuid} onClick={() => handleFragmentClick(event)}  >
+                    <TextBox content = {version.content}  />  
                 </article>
                 )}
             </section>
@@ -41,7 +41,7 @@ const NarrativeVersionedMolecule = props =>  {
                     display:flex;
                     flex-direction:row;   
                 }
-                .fragment {
+                .version {
                     margin-bottom:20px;
                 }
                 section {

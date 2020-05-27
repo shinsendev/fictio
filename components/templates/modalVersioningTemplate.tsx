@@ -13,7 +13,6 @@ const ModalVersioningTemplate = props => {
     }
 
     function save() {
-
         const body = {
             "uuid": props.narrative.uuid,
             "content": currentNarrativeContent,
