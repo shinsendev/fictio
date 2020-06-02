@@ -26,7 +26,7 @@ const ModalVersioningTemplate = props => {
             body: JSON.stringify(body),
           });
         
-        // props.refreshNarrative(props.narrative.uuid, currentNarrativeContent);
+        props.refreshNarrative(props.narrative.uuid, currentNarrativeContent);
         //todo: replace with a real modal
         alert("Save ok");
         props.closeModal();

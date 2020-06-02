@@ -6,6 +6,7 @@ import ModalVersioningTemplate from './ModalVersioningTemplate';
 const OriginTemplate = props => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeNarrative, setActiveNarrative] = useState(null);
+    const [updatedNarrative, setupdatedNarrative] = useState([]);
 
     function closeModal() {
         setIsOpen(false);
@@ -31,6 +32,14 @@ const OriginTemplate = props => {
           });
         ;
     }
+
+    // todo: correct for re-render
+    function refreshUpdatedNarrative(uuid:string, content:string) {
+        // setActiveNarrative(prevState => {
+        //     return {...prevState, originState}
+        // });
+        setupdatedNarrative([uuid, content]);
+    }
  
     return (
         <div>
@@ -40,6 +49,7 @@ const OriginTemplate = props => {
                     narrative={activeNarrative}
                     isOpen={isOpen}
                     closeModal={closeModal}
+                    refreshNarrative= {refreshUpdatedNarrative}
                 />
                 <Origin
                     narratives={props.narratives} 
