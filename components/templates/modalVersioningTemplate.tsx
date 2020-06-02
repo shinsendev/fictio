@@ -3,9 +3,10 @@ import Modal from '@material-ui/core/Modal';
 import React, { useState, Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import NarrativeVersionedMolecule from '../molecules/NarrativeVersionedMolecule/NarrativeVersionedMolecule';
+import { stringify } from 'querystring';
 
 const ModalVersioningTemplate = props => {
-    const [narrativeState, setNarrativeState] = useState(props.narrativeState);
+    const [narrativeState, setNarrativeState] = useState(props.narrative);
     const [currentNarrativeContent , setCurrentNarrativeContent] = useState(null);
 
     function closeModal() {
@@ -26,7 +27,8 @@ const ModalVersioningTemplate = props => {
             body: JSON.stringify(body),
           });
         
-        props.refreshNarrative(props.narrative.uuid, currentNarrativeContent);
+        // todo: create a narrative context and refresh this narrative value
+
         //todo: replace with a real modal
         alert("Save ok");
         props.closeModal();
