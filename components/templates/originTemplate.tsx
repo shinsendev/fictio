@@ -12,7 +12,6 @@ const OriginTemplate = props => {
     }
 
     function openModalOriginTemplate(uuid) {
-        console.log(uuid);
         // get one narrative to get its fragments
         fetch(process.env.edoAPIUrl + 'fragments/' + uuid + '.json')
         .then(response => {

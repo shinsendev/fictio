@@ -29,7 +29,7 @@ const Narrative = props => {
             "fiction_uuid": "1b7df281-ae2a-40bf-ad6a-ac60409a9ce6"
         };
 
-        const response = fetch(process.env.edoAPIUrl+'narratives', {
+        const response = fetch(process.env.edoAPIUrl+'fragments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
